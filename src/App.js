@@ -1,17 +1,32 @@
-import React from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
+import React, { useEffect } from 'react';
+import Header   from './components/Header';
+import Hero     from './components/Hero';
+import About    from './components/About';
+import Skills   from './components/Skills';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
-import Education from './components/Education';
-import Certificates from './components/Certificates';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+
+import { Education, Certificates, Courses } from './components/Education';
+import Contact  from './components/Contact';
+import Footer   from './components/Footer';
 import './App.css';
 
 function App() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="App">
       <Header />
@@ -22,6 +37,7 @@ function App() {
         <Experience />
         <Projects />
         <Education />
+        <Courses />
         <Certificates />
         <Contact />
       </main>

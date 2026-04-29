@@ -1,0 +1,119 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(7, 11, 20, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--bd);
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.header.scrolled {
+  background: rgba(7, 11, 20, 0.95);
+  border-color: var(--bd2);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.nav-brand {
+  font-family: var(--font-head);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--tx);
+  text-decoration: none;
+  letter-spacing: -0.04em;
+}
+.nav-brand span {
+  color: var(--p);
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 6px;
+}
+.nav-link {
+  display: block;
+  padding: 7px 14px;
+  text-decoration: none;
+  color: var(--tx2);
+  font-size: 0.9rem;
+  font-weight: 400;
+  border-radius: var(--r3);
+  transition: color 0.25s, background 0.25s;
+}
+.nav-link:hover,
+.nav-link.active {
+  color: var(--tx);
+  background: var(--bg3);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.theme-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg3);
+  border: 1px solid var(--bd);
+  color: var(--tx2);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s;
+}
+.theme-btn:hover {
+  border-color: var(--p);
+  color: var(--p);
+}
+.nav-toggle {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r3);
+  background: var(--bg3);
+  border: 1px solid var(--bd);
+  color: var(--tx);
+  font-size: 1.1rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle { display: flex; }
+  .nav-menu {
+    position: fixed;
+    top: 73px;
+    left: 0;
+    right: 0;
+    background: rgba(7, 11, 20, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 20px 28px 28px;
+    gap: 4px;
+    border-bottom: 1px solid var(--bd);
+    transform: translateY(-110%);
+    opacity: 0;
+    transition: transform 0.35s var(--ease), opacity 0.35s var(--ease);
+    pointer-events: none;
+  }
+  .nav-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+  .nav-link { font-size: 1rem; padding: 10px 14px; }
+}

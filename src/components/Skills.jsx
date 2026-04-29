@@ -1,78 +1,77 @@
 import React from 'react';
 import { portfolioData } from '../data/portfolioData';
-import { FaReact, FaNodeJs, FaPython, FaGitAlt } from 'react-icons/fa';
-import { SiDotnet, SiDjango, SiExpress, SiMongodb } from 'react-icons/si';
+import { FaReact, FaNodeJs, FaPython, FaGitAlt, FaCode } from 'react-icons/fa';
+import { SiDotnet, SiDjango } from 'react-icons/si';
 import './Skills.css';
+
+const SkillCard = ({ icon, title, items, accentColor }) => (
+  <div
+    className="skill-card fade-in"
+    style={{ '--card-accent': `linear-gradient(90deg, ${accentColor}, transparent)` }}
+  >
+    <span className="skill-icon">{icon}</span>
+    <h3>{title}</h3>
+    <div className="skill-tags">
+      {items.map((s) => (
+        <span key={s} className="skill-tag">{s}</span>
+      ))}
+    </div>
+  </div>
+);
 
 const Skills = () => {
   const { skills } = portfolioData;
-  
-  const SkillCard = ({ title, icon, items, color }) => (
-    <div className="skill-card" style={{ borderColor: color }}>
-      <div className="skill-header" style={{ color }}>
-        {icon}
-        <h3>{title}</h3>
-      </div>
-      <div className="skill-tags">
-        {items.map((skill, index) => (
-          <span key={index} className="skill-tag">{skill}</span>
-        ))}
-      </div>
-    </div>
-  );
+
+  const cards = [
+    {
+      icon: <FaReact color="#61dafb" />,
+      title: 'Frontend Development',
+      items: [...skills.frontend.languages, ...skills.frontend.libraries],
+      accentColor: '#61dafb',
+    },
+    {
+      icon: <FaNodeJs color="#68a063" />,
+      title: 'Node.js Backend',
+      items: skills.backend.nodejs,
+      accentColor: '#68a063',
+    },
+    {
+      icon: <SiDjango color="#34d399" />,
+      title: 'Django Backend',
+      items: skills.backend.django,
+      accentColor: '#34d399',
+    },
+    {
+      icon: <SiDotnet color="#818cf8" />,
+      title: '.NET Backend',
+      items: skills.backend.dotnet,
+      accentColor: '#818cf8',
+    },
+    {
+      icon: <FaPython color="#fbbf24" />,
+      title: 'Programming Languages',
+      items: skills.programmingLanguages,
+      accentColor: '#fbbf24',
+    },
+    {
+      icon: <FaGitAlt color="#f87171" />,
+      title: 'Other Skills',
+      items: skills.other,
+      accentColor: '#f87171',
+    },
+  ];
 
   return (
     <section id="skills" className="skills-section">
-      <h2 className="section-title">💻 My Skills</h2>
-      
-      <div className="skills-grid">
-        {/* Programming Languages */}
-        <SkillCard 
-          title="Programming Languages"
-          icon={<FaPython />}
-          items={skills.programmingLanguages}
-          color="#3776ab"
-        />
-        
-        {/* Frontend */}
-        <SkillCard 
-          title="Frontend Development"
-          icon={<FaReact />}
-          items={[...skills.frontend.languages, ...skills.frontend.libraries]}
-          color="#61dafb"
-        />
-        
-        {/* .NET Backend */}
-        <SkillCard 
-          title=".NET Backend"
-          icon={<SiDotnet />}
-          items={skills.backend.dotnet}
-          color="#512bd4"
-        />
-        
-        {/* ✅ Node.js Backend - تمت الإضافة */}
-        <SkillCard 
-          title="Node.js Backend"
-          icon={<FaNodeJs />}
-          items={skills.backend.nodejs}
-          color="#68a063"
-        />
-        
-        {/* ✅ Django Backend - تمت الإضافة */}
-        <SkillCard 
-          title="Django Backend"
-          icon={<SiDjango />}
-          items={skills.backend.django}
-          color="#092e20"
-        />
-        
-        {/* Other Skills */}
-        <SkillCard 
-          title="Other Skills"
-          icon={<FaGitAlt />}
-          items={skills.other}
-          color="#f05032"
-        />
+      <div className="container">
+        <h2 className="section-title fade-in">
+          My <span className="accent-word">Skills</span>
+        </h2>
+        <div className="skills-grid">
+          {cards.map((c) => (
+            <SkillCard key={c.title} {...c} />
+          ))}
+        </div>
       </div>
     </section>
   );

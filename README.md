@@ -68,3 +68,88 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# Portfolio Redesign — Setup Guide
+
+## What changed
+
+Complete redesign with a **dark editorial** aesthetic:
+- Deep dark backgrounds (`#070b14` → `#0d1220` → `#131929`)
+- Indigo accent (`#818cf8`) + emerald secondary (`#34d399`)
+- Syne (headings) + DM Sans (body) font pairing
+- Subtle grid texture overlay across the full page
+- Glowing orbs on hero section
+- Consistent CSS variables everywhere — no more hardcoded hex values
+
+---
+
+## File structure
+
+Place these files in your project like this:
+
+```
+src/
+  index.css           ← replace completely
+  App.css             ← replace completely
+  App.jsx             ← replace completely
+  components/
+    Header.jsx        ← replace
+    Header.css        ← replace
+    Hero.jsx          ← replace
+    Hero.css          ← replace
+    About.jsx         ← replace
+    About.css         ← replace
+    Skills.jsx        ← replace
+    Skills.css        ← replace
+    Experience.jsx    ← replace
+    Experience.css    ← replace
+    Projects.jsx      ← replace
+    Projects.css      ← replace
+    Education.jsx     ← replace (now exports Education, Certificates, Courses)
+    Education.css     ← replace (covers Education + Certificates + Courses)
+    Contact.jsx       ← replace
+    Contact.css       ← replace (covers Contact + Footer)
+    Footer.jsx        ← replace
+```
+
+> **Note:** `Education.jsx` now exports 3 components: `Education`, `Certificates`, and `Courses`.
+> Import them like: `import { Education, Certificates, Courses } from './components/Education';`
+
+---
+
+## CSS variables reference
+
+All colors come from `index.css` `:root`:
+
+| Variable       | Value     | Usage                        |
+|----------------|-----------|------------------------------|
+| `--p`          | `#818cf8` | Primary indigo accent        |
+| `--p-dim`      | `#4f46e5` | Darker indigo (hover states) |
+| `--p-glow`     | 18% alpha | Glow backgrounds             |
+| `--s`          | `#34d399` | Secondary emerald            |
+| `--bg`         | `#070b14` | Darkest background           |
+| `--bg2`        | `#0d1220` | Surface background           |
+| `--bg3`        | `#131929` | Elevated surface             |
+| `--bg4`        | `#1a2236` | Highest surface              |
+| `--tx`         | `#e8edf5` | Primary text                 |
+| `--tx2`        | `#8892a4` | Secondary text (muted)       |
+| `--tx3`        | `#3d4a60` | Tertiary text (hints)        |
+| `--bd`         | 7% white  | Default border               |
+| `--bd2`        | 12% white | Stronger border              |
+| `--bd-p`       | 30% indigo| Accent border (on hover)     |
+
+---
+
+## Fonts
+
+Add this to your `index.html` `<head>` if not already loading Google Fonts:
+
+```html
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+```
+
+Also add Fira Code for the code window:
+```html
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+```

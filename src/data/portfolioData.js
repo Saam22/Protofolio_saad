@@ -40,7 +40,7 @@ export const portfolioData = {
     },
     {
       title: "Member",
-      company: "ASM Problem Solving",
+      company: "ACM Problem Solving",
       period: "2019 – 2020"
     }
   ],

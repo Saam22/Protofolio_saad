@@ -1,13 +1,169 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+/* ─── TOKENS ─────────────────────────────────────────── */
+:root {
+  --p:      #818cf8;   /* indigo accent */
+  --p-dim:  #4f46e5;
+  --p-glow: rgba(129, 140, 248, 0.18);
+  --p-rgb:  129, 140, 248;
+
+  --s:      #34d399;   /* emerald secondary */
+  --s-dim:  #059669;
+
+  --bg:     #070b14;
+  --bg2:    #0d1220;
+  --bg3:    #131929;
+  --bg4:    #1a2236;
+
+  --tx:     #e8edf5;
+  --tx2:    #8892a4;
+  --tx3:    #3d4a60;
+
+  --bd:     rgba(255,255,255,0.07);
+  --bd2:    rgba(255,255,255,0.12);
+  --bd-p:   rgba(129,140,248,0.3);
+
+  --r:      16px;
+  --r2:     10px;
+  --r3:     6px;
+
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  --ease:   cubic-bezier(0.4, 0, 0.2, 1);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* ─── RESET ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg4) var(--bg);
+}
+html::-webkit-scrollbar { width: 6px; }
+html::-webkit-scrollbar-track { background: var(--bg); }
+html::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+html::-webkit-scrollbar-thumb:hover { background: var(--p-dim); }
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  background: var(--bg);
+  color: var(--tx);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── LAYOUT ─────────────────────────────────────────── */
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+section { padding: 120px 0; }
+
+/* ─── SECTION TITLE ──────────────────────────────────── */
+.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  text-align: center;
+  color: var(--tx);
+  margin-bottom: 72px;
+  letter-spacing: -0.03em;
+  position: relative;
+}
+.section-title .accent-word {
+  background: linear-gradient(120deg, var(--p) 0%, var(--s) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--p), var(--s));
+  margin: 18px auto 0;
+  border-radius: 2px;
+}
+
+/* ─── GRID CARD BASE ─────────────────────────────────── */
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--bd);
+  border-radius: var(--r);
+  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.card:hover {
+  border-color: var(--bd-p);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35), 0 0 0 1px var(--bd-p);
+}
+
+/* ─── BUTTONS ────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 26px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.28s var(--ease);
+}
+.btn-primary {
+  background: var(--p);
+  color: #070b14;
+  font-weight: 600;
+}
+.btn-primary:hover {
+  background: #a5b4fc;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(var(--p-rgb), 0.4);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--tx);
+  border: 1px solid var(--bd2);
+}
+.btn-outline:hover {
+  border-color: var(--p);
+  color: var(--p);
+  transform: translateY(-2px);
+}
+
+/* ─── FADE IN ANIMATION ──────────────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in:nth-child(2) { transition-delay: 0.1s; }
+.fade-in:nth-child(3) { transition-delay: 0.2s; }
+.fade-in:nth-child(4) { transition-delay: 0.3s; }
+
+/* ─── GRID NOISE TEXTURE OVERLAY ────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 79px, var(--bd) 79px, var(--bd) 80px),
+    repeating-linear-gradient(90deg, transparent, transparent 79px, var(--bd) 79px, var(--bd) 80px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
 }

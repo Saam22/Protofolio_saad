@@ -1,0 +1,225 @@
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 80px;
+}
+
+/* Glowing orbs */
+.hero-section::before,
+.hero-section::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+}
+.hero-section::before {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(129,140,248,0.12) 0%, transparent 70%);
+  top: -100px;
+  right: -100px;
+  animation: orb-drift 8s ease-in-out infinite alternate;
+}
+.hero-section::after {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(52,211,153,0.08) 0%, transparent 70%);
+  bottom: 50px;
+  left: -80px;
+  animation: orb-drift 10s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes orb-drift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(30px, 20px) scale(1.08); }
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Left side */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 50px;
+  border: 1px solid var(--bd-p);
+  background: var(--p-glow);
+  color: var(--p);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 22px;
+}
+.eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--s);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+
+.hero-name {
+  font-family: var(--font-head);
+  font-size: clamp(2.6rem, 5.5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: var(--tx);
+  margin-bottom: 16px;
+}
+.hero-name .line2 {
+  background: linear-gradient(120deg, var(--p) 0%, var(--s) 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+
+.hero-role {
+  font-size: 1.1rem;
+  color: var(--tx2);
+  margin-bottom: 26px;
+  font-weight: 300;
+}
+
+.hero-desc {
+  font-size: 1rem;
+  color: var(--tx2);
+  line-height: 1.8;
+  margin-bottom: 36px;
+  max-width: 480px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 32px;
+}
+.stat-item {}
+.stat-num {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--tx);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--tx3);
+  margin-top: 4px;
+}
+
+/* Right side — code window */
+.hero-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.code-window {
+  background: var(--bg2);
+  border: 1px solid var(--bd);
+  border-radius: var(--r);
+  overflow: hidden;
+  position: relative;
+}
+.code-window::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(129,140,248,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+.win-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--bd);
+  background: var(--bg3);
+}
+.win-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+.win-dot.r { background: #ff5f57; }
+.win-dot.y { background: #febc2e; }
+.win-dot.g { background: #28c840; }
+.win-tab {
+  margin-left: 10px;
+  font-size: 0.8rem;
+  color: var(--tx3);
+  font-family: var(--font-body);
+}
+.win-tab span { color: var(--tx2); }
+
+.code-content {
+  padding: 24px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: var(--tx2);
+  margin: 0;
+  white-space: pre;
+  overflow-x: auto;
+}
+.code-kw  { color: var(--p); }
+.code-str { color: var(--s); }
+.code-key { color: #f9a8d4; }
+.code-num { color: #fb923c; }
+.code-cmt { color: var(--tx3); font-style: italic; }
+
+/* status badge card */
+.status-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--bg2);
+  border: 1px solid var(--bd-p);
+  border-radius: var(--r2);
+  font-size: 0.9rem;
+}
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--s);
+  flex-shrink: 0;
+  box-shadow: 0 0 8px var(--s);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+.status-text { color: var(--tx2); }
+.status-text strong { color: var(--tx); font-weight: 500; }
+
+@media (max-width: 900px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    text-align: center;
+  }
+  .hero-desc { margin-left: auto; margin-right: auto; }
+  .hero-actions { justify-content: center; }
+  .hero-stats { justify-content: center; }
+}
