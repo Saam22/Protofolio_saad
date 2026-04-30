@@ -1,6 +1,6 @@
 import React from 'react';
 import { portfolioData } from '../data/portfolioData';
-import { FaReact, FaNodeJs, FaPython, FaGitAlt, FaCode } from 'react-icons/fa';
+import { FaReact, FaNodeJs, FaPython, FaGitAlt } from 'react-icons/fa';
 import { SiDotnet, SiDjango } from 'react-icons/si';
 import './Skills.css';
 
