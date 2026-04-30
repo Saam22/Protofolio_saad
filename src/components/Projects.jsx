@@ -29,7 +29,7 @@ const Projects = () => (
               <a href={p.link} target="_blank" rel="noopener noreferrer" className="proj-link primary">
                 <FaExternalLinkAlt size={12} /> Live Demo
               </a>
-              <a href="#" className="proj-link ghost">
+              <a href="https://github.com/Saam22/project" className="proj-link ghost">
                 <FaGithub size={13} /> Code
               </a>
             </div>
