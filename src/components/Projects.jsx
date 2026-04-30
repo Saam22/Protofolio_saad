@@ -1,6 +1,6 @@
 import React from 'react';
 import { portfolioData } from '../data/portfolioData';
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+// import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 import './Projects.css';
 
 const typeClass = (type) =>
@@ -26,12 +26,12 @@ const Projects = () => (
               ))}
             </div>
             <div className="project-links">
-              <a href={p.link} target="_blank" rel="noopener noreferrer" className="proj-link primary">
+              {/* <a href={p.link} target="_blank" rel="noopener noreferrer" className="proj-link primary">
                 <FaExternalLinkAlt size={12} /> Live Demo
               </a>
               <a href="https://github.com/Saam22/project" className="proj-link ghost">
                 <FaGithub size={13} /> Code
-              </a>
+              </a> */}
             </div>
           </div>
         ))}
