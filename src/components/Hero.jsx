@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaArrowRight, FaDownload } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
 import { portfolioData } from '../data/portfolioData';
 import './Hero.css';
 
@@ -40,7 +40,7 @@ const Hero = () => {
 
           <div className="hero-stats">
             <div className="stat-item">
-              <div className="stat-num">5+</div>
+              <div className="stat-num">1+</div>
               <div className="stat-label">Years learning</div>
             </div>
             <div className="stat-item">
