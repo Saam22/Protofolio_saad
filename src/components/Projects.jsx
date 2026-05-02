@@ -19,6 +19,7 @@ const Projects = () => (
               <h3>{p.title}</h3>
               <span className={`type-badge ${typeClass(p.type)}`}>{p.type}</span>
             </div>
+            
             <p className="project-desc">{p.description}</p>
             <div className="tech-stack">
               {p.technologies.map((t) => (

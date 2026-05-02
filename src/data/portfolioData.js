@@ -105,11 +105,11 @@ export const portfolioData = {
       link: "#"
     },
     {
-      title: "News Website",
+      title: "PULSE Website",
       description: "Website displaying political, sports, and social news",
       technologies: ["HTML", "CSS", "JavaScript"],
       type: "Frontend",
-      link: "#"
+      link: "https://pulse-peach-kappa.vercel.app/"
     },
     {
       title: "Music Player",
