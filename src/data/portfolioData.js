@@ -131,7 +131,7 @@ export const portfolioData = {
 },
     {
       title: "Harmony Flow",
-      description: "Interactive music player with tracklist management",
+      description: "A fully interactive, feature-rich web-based music player built with HTML5, CSS3, and JavaScript. This modern music player provides a complete listening experience with playlist management, playback controls, audio visualizer, shuffle/repeat modes, speed control, and a beautiful responsive design.",
       technologies: ["HTML5", "CSS3", "JavaScript"],
       type: "Frontend",
       image: "/images/Screenshot 2026-05-03 130115.png"
