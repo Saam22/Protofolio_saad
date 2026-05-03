@@ -1,6 +1,6 @@
 import React from 'react';
 import { portfolioData } from '../data/portfolioData';
-// import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 import './Projects.css';
 
 const typeClass = (type) =>
@@ -15,11 +15,14 @@ const Projects = () => (
       <div className="projects-grid">
         {portfolioData.projects.map((p, i) => (
           <div key={i} className="project-card fade-in">
+              <div className="project-image">
+    <img src={p.image} alt={p.title} />
+  </div>
             <div className="project-header">
               <h3>{p.title}</h3>
               <span className={`type-badge ${typeClass(p.type)}`}>{p.type}</span>
             </div>
-            
+
             <p className="project-desc">{p.description}</p>
             <div className="tech-stack">
               {p.technologies.map((t) => (
@@ -27,12 +30,12 @@ const Projects = () => (
               ))}
             </div>
             <div className="project-links">
-              {/* <a href={p.link} target="_blank" rel="noopener noreferrer" className="proj-link primary">
+              <a href={p.link} target="_blank" rel="noopener noreferrer" className="proj-link primary">
                 <FaExternalLinkAlt size={12} /> Live Demo
               </a>
               <a href="https://github.com/Saam22/project" className="proj-link ghost">
                 <FaGithub size={13} /> Code
-              </a> */}
+              </a>
             </div>
           </div>
         ))}

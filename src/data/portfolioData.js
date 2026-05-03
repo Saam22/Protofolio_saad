@@ -74,56 +74,79 @@ export const portfolioData = {
       description: "React app contains main functionalities for e-commerce. Front-end version only.",
       technologies: ["ReactJS", "HTML", "CSS", "JavaScript"],
       type: "Frontend",
-      link: "#"
+      link: "#",
+      image: "/images/photo-1529107386315-e1a2ed48a620.jpg"
+, live: "https://pulse-peach-kappa.vercel.app/",
+  github: "https://github.com/Saam22/PULSE"
     },
     {
       title: "Breast Cancer Website",
       description: "Graduation project using Frontend, Backend and Machine Learning",
       technologies: ["React", ".NET", "Machine Learning"],
       type: "Full Stack",
-      link: "#"
+      link: "#",
+      image: "/images/photo-1529107386315-e1a2ed48a620.jpg"
+, live: "https://pulse-peach-kappa.vercel.app/",
+  github: "https://github.com/Saam22/PULSE"
     },
     {
       title: "Vezeeta Website Clone",
       description: "Web-based platform built using .NET technologies for managing medical content and appointments",
       technologies: [".NET", "ASP.NET", "SQL"],
       type: "Backend",
-      link: "#"
+      link: "#",
+      image: "/images/photo-1529107386315-e1a2ed48a620.jpg"
+, live: "https://pulse-peach-kappa.vercel.app/",
+  github: "https://github.com/Saam22/PULSE"
     },
     {
       title: "Furniture E-commerce Website",
       description: "Dynamic online platform for browsing and purchasing furniture products",
       technologies: ["PHP", "MySQL", "HTML", "CSS"],
       type: "Full Stack",
-      link: "#"
+      link: "#",
+      image: "/images/photo-1529107386315-e1a2ed48a620.jpg"
+, live: "https://pulse-peach-kappa.vercel.app/",
+  github: "https://github.com/Saam22/PULSE"
     },
+
+{
+  title: "PULSE",
+  description: "Designed and developed PULSE news website to deliver diverse content (political, sports, social) through a modern, user-friendly interface. The project focuses on comfortable reading experience with smart content organization and fast navigation.",
+  technologies: ["HTML5", "CSS3", "JavaScript , Bootstrap"],
+  type: "Frontend",
+  image: "/images/photo-1529107386315-e1a2ed48a620.jpg",
+
+  live: "https://pulse-peach-kappa.vercel.app/",
+  github: "https://github.com/Saam22/PULSE"
+},{
+  title: "Nile & Clay",
+  description: "Designed and developed a professional website for Nile & Clay restaurant that reflects its premium brand identity while delivering a seamless user experience. The site features a fully responsive layout, dual theme support (Light/Dark Mode), and an interactive menu system with dynamic filtering.",
+  technologies: ["HTML5", "CSS3", "JavaScript , Bootstrap"],
+  type: "Frontend",
+  image: "/images/Screenshot 2026-05-03 112254.png",
+
+  live: "https://nile-clay.vercel.app/",
+  github: "https://github.com/Saam22/Nile_Clay"
+},
     {
-      title: "devFolio",
-      description: "Responsive portfolio template showcasing developer skills and services",
-      technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"],
-      type: "Frontend",
-      link: "#"
-    },
-    {
-      title: "PULSE Website",
-      description: "Website displaying political, sports, and social news",
-      technologies: ["HTML", "CSS", "JavaScript"],
-      type: "Frontend",
-      link: "https://pulse-peach-kappa.vercel.app/"
-    },
-    {
-      title: "Music Player",
+      title: "Harmony Flow",
       description: "Interactive music player with tracklist management",
-      technologies: ["HTML", "CSS", "JavaScript"],
+      technologies: ["HTML5", "CSS3", "JavaScript"],
       type: "Frontend",
-      link: "#"
+      image: "/images/Screenshot 2026-05-03 130115.png"
+, live: "https://music-player-one-gules.vercel.app/",
+  github: "https://github.com/Saam22/Music_Player"
     },
     {
       title: "Quiz App",
       description: "Interactive quiz application with score tracking",
       technologies: ["HTML", "CSS", "JavaScript"],
       type: "Frontend",
-      link: "#"
+      link: "#",
+      image: "/images/photo-1529107386315-e1a2ed48a620.jpg"
+, live: "https://pulse-peach-kappa.vercel.app/",
+  github: "https://github.com/Saam22/PULSE"
     }
   ],
   
