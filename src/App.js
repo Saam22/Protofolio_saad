@@ -12,6 +12,22 @@ import Footer   from './components/Footer';
 import './App.css';
 
 function App() {
+  // تفعيل Intersection Observer للأنيميشن عند السكرول
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -80px 0px' }
+  );
+
+  document.querySelectorAll('.project-card').forEach(card => observer.observe(card));
+  return () => observer.disconnect();
+}, []);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
