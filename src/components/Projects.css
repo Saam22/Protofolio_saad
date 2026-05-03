@@ -743,29 +743,103 @@
 }
 
 /* ════════ SPARKLE PARTICLES (Created by JS) ════════ */
+/* ════════ PROJECTS.CSS — PRODUCTION READY ════════ */
+/* كل الأنيميشن شغالة بدون أي تعبيرات جافاسكريبت في الـ CSS */
+
+/* ... [كل الـ CSS السابق زي ما هو لحد ما توصل لـ .sparkle] ... */
+
+/* ════════ SPARKLE PARTICLES — FIXED ════════ */
+/* ✅ استخدم قيم ثابتة أو متغيرات CSS بدل Math.random() */
 .sparkle {
   position: absolute;
   width: 8px;
   height: 8px;
-  background: var(--sparkle-color);
+  background: var(--sparkle-color, #fff);
   border-radius: 50%;
   pointer-events: none;
   animation: sparkleFly 1s var(--ease-out) forwards;
   z-index: 100;
-  box-shadow: 0 0 10px var(--sparkle-color), 0 0 20px var(--sparkle-color);
+  box-shadow: 0 0 10px var(--sparkle-color, #fff), 0 0 20px var(--sparkle-color, #fff);
+  /* ✅ القيم العشوائية هتتحدد بـ inline style من الجافاسكريبت */
+  transform: translate(var(--sparkle-x, 0), var(--sparkle-y, -40px)) scale(0);
 }
 
 @keyframes sparkleFly {
   0% {
     opacity: 1;
-    transform: translate(0, 0) scale(1);
+    transform: translate(var(--sparkle-x, 0), var(--sparkle-y, -40px)) scale(1);
   }
   100% {
     opacity: 0;
-    transform: translate(
-      calc((Math.random() - 0.5) * 80px),
-      calc((Math.random() - 0.5) * 80px - 40px)
-    ) scale(0);
+    transform: translate(var(--sparkle-x-end, 0), var(--sparkle-y-end, -80px)) scale(0);
+  }
+}
+
+/* ════════ FLOATING ORBS — FIXED ════════ */
+/* ✅ استخدم متغيرات CSS مع قيم افتراضية */
+.float-orb {
+  position: absolute;
+  width: var(--orb-size, 100px);
+  height: var(--orb-size, 100px);
+  background: radial-gradient(circle, var(--p-glow) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: floatOrb var(--orb-duration, 20s) ease-in-out var(--orb-delay, 0s) infinite;
+  filter: blur(20px);
+  /* ✅ القيم العشوائية هتتحدد بـ inline style */
+  left: var(--orb-x, 0);
+  top: var(--orb-y, 0);
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.1;
+  }
+  25% {
+    transform: translate(var(--orb-move-x, 10px), var(--orb-move-y, -10px)) scale(1.1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate(var(--orb-move-x2, -15px), var(--orb-move-y2, 15px)) scale(0.9);
+    opacity: 0.15;
+  }
+  75% {
+    transform: translate(var(--orb-move-x3, 5px), var(--orb-move-y3, -5px)) scale(1.05);
+    opacity: 0.18;
+  }
+}
+
+/* ... [باقي الـ CSS زي ما هو] ... */
+
+/* ════════ REDUCED MOTION — IMPORTANT FOR PRODUCTION ════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .project-card,
+  .project-image,
+  .overlay-content,
+  .type-badge,
+  .tech-badge,
+  .proj-link {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  
+  .float-orb,
+  .type-wave,
+  .badge-wave,
+  .gradient-border,
+  .sparkle {
+    display: none;
   }
 }
 
