@@ -139,14 +139,31 @@ export const portfolioData = {
   github: "https://github.com/Saam22/Music_Player"
     },
     {
-      title: "Quiz App",
-      description: "Interactive quiz application with score tracking",
+      title: "FootballIQ",
+      description: "Developed a feature-rich football trivia game with 50+ questions, 3 difficulty levels, lifelines, daily challenges, streak bonuses, and persistent stats via localStorage. Implemented dynamic scoring, audio feedback, confetti celebrations, and responsive dark/light themes. Demonstrated expertise in vanilla frontend development, gamification, and state management.",
       technologies: ["HTML", "CSS", "JavaScript"],
       type: "Frontend",
-      link: "#",
-      image: "/images/photo-1529107386315-e1a2ed48a620.jpg"
-, live: "https://pulse-peach-kappa.vercel.app/",
-  github: "https://github.com/Saam22/PULSE"
+      image: "/images/Screenshot 2026-05-26 202128.png"
+, live: "https://football-quiz-six.vercel.app/",
+  github: "https://github.com/Saam22/FootballQuiz"
+    },
+        {
+      title: "DayFlow",
+      description: "A full-featured task management app for organizing daily productivity. Users can create tasks with custom categories (Work, Personal, Health, Urgent) and priority levels, edit tasks inline, drag and drop to reorder, filter by status, and search in real time. All data persists across sessions using the browser's local storage. Built with HTML5, CSS3, and Vanilla JavaScript.",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      type: "Frontend",
+      image: "/images/Screenshot 2026-05-26 202128.png"
+, live: "https://day-flow-task-manager.vercel.app/",
+  github: "https://github.com/Saam22/DayFlow-Task-Manager"
+    },
+        {
+      title: "LearnForge",
+      description:"A responsive e-learning platform UI showcasing a free courses catalog with dynamic filtering by category, live search, course enrollment tracking, modal previews, animated statistics counters, and scroll-reveal effects. Designed to simulate a real-world SaaS product interface. Built with HTML5, CSS3, and Vanilla JavaScript .",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      type: "Frontend",
+      image: "/images/Screenshot 2026-05-26 202128.png"
+, live: "https://learn-forge-beta.vercel.app/",
+  github: "https://github.com/Saam22/LearnForge"
     }
   ],
   
@@ -175,6 +192,11 @@ export const portfolioData = {
       title: "C# Course",
       issuer: "Essam Abdelnaby",
       date: "2023"
+    },
+    {
+      title: "Design And Implement Efficient Database Solutions",
+      issuer: "Manara Tech",
+      date: "2026"
     }
   ],
   
@@ -184,6 +206,7 @@ export const portfolioData = {
     "The Web Front End Learning - Udemy",
     "Learn HTML & CSS - Mahara Tech",
     "Database Fundamentals - Mahara Tech",
-    "C# Course - Essam Abdelnaby"
+    "C# Course - Essam Abdelnaby",
+    "Design And Implement Efficient Database Solutions - Manara Tech"
   ]
 };
