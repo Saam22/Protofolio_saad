@@ -69,16 +69,16 @@ export const portfolioData = {
   },
   
   projects: [
-//     {
-//       title: "E-Store",
-//       description: "React app contains main functionalities for e-commerce. Front-end version only.",
-//       technologies: ["ReactJS", "HTML", "CSS", "JavaScript"],
-//       type: "Frontend",
-//       link: "#",
-//       image: "/images/photo-1529107386315-e1a2ed48a620.jpg"
-// , live: "https://pulse-peach-kappa.vercel.app/",
-//   github: "https://github.com/Saam22/PULSE"
-//     },
+    {
+      title: "SkyFly",
+      description: "Comprehensive web platform for searching, comparing, and booking flight tickets across multiple airlines. Features an intuitive search interface with smart filters, detailed flight information, interactive seat map, and multi-step booking.",
+      technologies: ["ReactJS","Vite", "HTML", "CSS", "JavaScript"],
+      type: "Frontend",
+      link: "#",
+      image: "/images/screen.png"
+, live: "https://skyfly-shbq.vercel.app/",
+  github: "https://github.com/Saam22/skyfly"
+    },
 //     {
 //       title: "Breast Cancer Website",
 //       description: "Graduation project using Frontend, Backend and Machine Learning",
