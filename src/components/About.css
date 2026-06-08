@@ -110,24 +110,37 @@
   padding: 14px 20px;
   border-bottom: 1px solid var(--bd);
   font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--tx3);
+  font-weight: 600;
+  color: var(--tx2);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   background: var(--bg3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.info-block-header svg {
+  color: var(--p);
+  font-size: 0.85rem;
 }
 .info-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 10px;
   padding: 13px 20px;
   border-bottom: 1px solid var(--bd);
   font-size: 0.9rem;
 }
 .info-row:last-child { border-bottom: none; }
-.info-row .label { color: var(--tx3); }
-.info-row .value { color: var(--tx); font-weight: 400; }
+.info-row .info-icon {
+  color: var(--tx3);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+.info-row .label { color: var(--tx3); min-width: 72px; flex-shrink: 0; }
+.info-row .value { color: var(--tx); font-weight: 400; margin-left: auto; text-align: right; }
 .info-row .value.accent { color: var(--p); }
+.info-row:hover { background: var(--bg3); }
 
 @media (max-width: 900px) {
   .about-layout {

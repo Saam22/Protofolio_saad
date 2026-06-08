@@ -1,5 +1,6 @@
 import React from 'react';
 import { portfolioData } from '../data/portfolioData';
+import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaGraduationCap, FaBriefcase } from 'react-icons/fa';
 import './About.css';
 
 const About = () => {
@@ -17,7 +18,7 @@ const About = () => {
           <div className="fade-in">
             <div className="about-avatar-wrap">
               <div className="about-avatar">SM</div>
-              <span className="about-avatar-badge">Cairo, Egypt 🇪🇬</span>
+              <span className="about-avatar-badge">Cairo, Egypt</span>
             </div>
 
             <h3 className="about-headline">
@@ -35,34 +36,33 @@ const About = () => {
           {/* Right */}
           <div className="about-sidebar fade-in">
             <div className="info-block">
-              <div className="info-block-header">Personal Info</div>
+              <div className="info-block-header"><FaBriefcase /> Personal Info</div>
               <div className="info-row">
+                <FaMapMarkerAlt className="info-icon" />
                 <span className="label">Location</span>
                 <span className="value">{portfolioData.personal.location}</span>
               </div>
               <div className="info-row">
+                <FaEnvelope className="info-icon" />
                 <span className="label">Email</span>
-                <span className="value accent" style={{ fontSize: '0.82rem' }}>
-                  {portfolioData.personal.email}
-                </span>
+                <span className="value accent">{portfolioData.personal.email}</span>
               </div>
               <div className="info-row">
+                <FaPhone className="info-icon" />
                 <span className="label">Phone</span>
                 <span className="value">{portfolioData.personal.phone}</span>
               </div>
             </div>
 
             <div className="info-block">
-              <div className="info-block-header">Education</div>
+              <div className="info-block-header"><FaGraduationCap /> Education</div>
               <div className="info-row">
                 <span className="label">Degree</span>
                 <span className="value">Bachelor of CS</span>
               </div>
               <div className="info-row">
                 <span className="label">University</span>
-                <span className="value" style={{ fontSize: '0.82rem', textAlign: 'right' }}>
-                  Ain Shams University
-                </span>
+                <span className="value">Ain Shams University</span>
               </div>
               <div className="info-row">
                 <span className="label">Year</span>
@@ -71,7 +71,7 @@ const About = () => {
             </div>
 
             <div className="info-block">
-              <div className="info-block-header">Status</div>
+              <div className="info-block-header"><FaBriefcase /> Status</div>
               <div className="info-row">
                 <span className="label">Availability</span>
                 <span className="value accent">Open to work</span>

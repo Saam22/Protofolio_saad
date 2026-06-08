@@ -3,15 +3,16 @@
   top: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(7, 11, 20, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(7, 11, 20, 0.6);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
   border-bottom: 1px solid var(--bd);
-  transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+  transition: background 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 .header.scrolled {
-  background: rgba(7, 11, 20, 0.95);
+  background: rgba(7, 11, 20, 0.85);
   border-color: var(--bd2);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.3);
 }
 
 .navbar {
@@ -46,12 +47,17 @@
   font-size: 0.9rem;
   font-weight: 400;
   border-radius: var(--r3);
-  transition: color 0.25s, background 0.25s;
+  border: 1px solid transparent;
+  transition: color 0.25s, background 0.25s, border-color 0.25s;
 }
-.nav-link:hover,
-.nav-link.active {
+.nav-link:hover {
   color: var(--tx);
   background: var(--bg3);
+}
+.nav-link.active {
+  color: var(--p);
+  background: var(--p-glow);
+  border-color: var(--bd-p);
 }
 
 .nav-actions {
@@ -99,21 +105,27 @@
     top: 73px;
     left: 0;
     right: 0;
-    background: rgba(7, 11, 20, 0.98);
-    backdrop-filter: blur(20px);
+    background: rgba(7, 11, 20, 0.92);
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
     flex-direction: column;
-    padding: 20px 28px 28px;
-    gap: 4px;
+    padding: 24px 28px 32px;
+    gap: 2px;
     border-bottom: 1px solid var(--bd);
-    transform: translateY(-110%);
+    transform: translateY(-110%) scale(0.96);
     opacity: 0;
-    transition: transform 0.35s var(--ease), opacity 0.35s var(--ease);
+    transition: transform 0.4s var(--ease), opacity 0.4s var(--ease);
     pointer-events: none;
+    border-radius: 0 0 var(--r) var(--r);
   }
   .nav-menu.active {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
     opacity: 1;
     pointer-events: all;
   }
-  .nav-link { font-size: 1rem; padding: 10px 14px; }
+  .nav-link {
+    font-size: 1rem;
+    padding: 10px 14px;
+    text-align: center;
+  }
 }

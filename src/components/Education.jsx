@@ -1,6 +1,6 @@
 import React from 'react';
 import { portfolioData } from '../data/portfolioData';
-import { FaAward, FaBookOpen } from 'react-icons/fa';
+import { FaAward, FaBookOpen, FaGraduationCap, FaCalendarAlt, FaMapMarkerAlt, FaCheckCircle } from 'react-icons/fa';
 import './Education.css';
 
 /* ── Education ────────────────────────────────────── */
@@ -13,12 +13,13 @@ export const Education = () => (
       <div className="edu-grid">
         {portfolioData.education.map((edu, i) => (
           <div key={i} className="edu-card fade-in">
+            <div className="edu-icon"><FaGraduationCap /></div>
             <div className="edu-degree">{edu.degree}</div>
             <div className="edu-institution">{edu.institution}</div>
             {edu.department && <div className="edu-dept">{edu.department}</div>}
             <div className="edu-meta">
-              <span>📅 {edu.period}</span>
-              <span>📍 {edu.location}</span>
+              <span><FaCalendarAlt /> {edu.period}</span>
+              <span><FaMapMarkerAlt /> {edu.location}</span>
             </div>
           </div>
         ))}
@@ -40,7 +41,7 @@ export const Certificates = () => (
             <div className="cert-icon"><FaAward /></div>
             <div className="cert-title">{cert.title}</div>
             <div className="cert-issuer">{cert.issuer}</div>
-            <span className="cert-date">📅 {cert.date}</span>
+            <span className="cert-date"><FaCalendarAlt /> {cert.date}</span>
           </div>
         ))}
       </div>
@@ -61,7 +62,7 @@ export const Courses = () => (
             <div className="course-icon"><FaBookOpen /></div>
             <div>
               <h3>{course}</h3>
-              <span className="course-badge">✓ Completed</span>
+              <span className="course-badge"><FaCheckCircle /> Completed</span>
             </div>
           </div>
         ))}

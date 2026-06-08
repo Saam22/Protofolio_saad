@@ -1,7 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import { portfolioData } from '../data/portfolioData';
 import './Hero.css';
+
+const roles = ['Web Developer', 'Full-Stack Developer', 'React Developer', 'UI/UX Enthusiast'];
+
+const Typewriter = ({ texts }) => {
+  const [display, setDisplay] = useState('');
+  const [index, setIndex] = useState(0);
+  const [char, setChar] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = texts[index];
+    let timeout;
+
+    if (!deleting && char < current.length) {
+      timeout = setTimeout(() => {
+        setDisplay(current.slice(0, char + 1));
+        setChar(c => c + 1);
+      }, 80);
+    } else if (!deleting && char === current.length) {
+      timeout = setTimeout(() => setDeleting(true), 2000);
+    } else if (deleting && char > 0) {
+      timeout = setTimeout(() => {
+        setDisplay(current.slice(0, char - 1));
+        setChar(c => c - 1);
+      }, 40);
+    } else if (deleting && char === 0) {
+      setDeleting(false);
+      setIndex((index + 1) % texts.length);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [char, deleting, index, texts]);
+
+  return <span className="typewriter-text">{display}<span className="typewriter-cursor">|</span></span>;
+};
 
 const Hero = () => {
   return (
@@ -21,7 +56,7 @@ const Hero = () => {
           </h1>
 
           <p className="hero-role">
-            {portfolioData.personal.title} &nbsp;·&nbsp; React &nbsp;/&nbsp; Django &nbsp;/&nbsp; Node.js
+            <Typewriter texts={roles} /> &nbsp;·&nbsp; React &nbsp;/&nbsp; Django &nbsp;/&nbsp; Node.js
           </p>
 
           <p className="hero-desc">

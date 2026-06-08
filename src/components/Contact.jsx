@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { FaEnvelope, FaPhone, FaLinkedin, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaLinkedin, FaMapMarkerAlt, FaPaperPlane, FaSpinner } from 'react-icons/fa';
 import { portfolioData } from '../data/portfolioData';
 import './Contact.css';
 
@@ -21,11 +21,11 @@ const Contact = () => {
       'wjOB0eAAApcdj2E3b'
     )
     .then(() => {
-      setStatus({ type: 'success', message: '✅ Message sent! I\'ll get back to you soon.' });
+      setStatus({ type: 'success', message: 'Message sent! I\'ll get back to you soon.' });
       form.current.reset();
     })
     .catch(() => {
-      setStatus({ type: 'error', message: '❌ Something went wrong. Please try again.' });
+      setStatus({ type: 'error', message: 'Something went wrong. Please try again.' });
     })
     .finally(() => setSending(false));
   };
@@ -110,7 +110,7 @@ const Contact = () => {
               )}
 
               <button type="submit" className="btn-submit" disabled={sending}>
-                {sending ? 'Sending...' : 'Send Message →'}
+                {sending ? <><FaSpinner className="spinner" /> Sending...</> : <><FaPaperPlane /> Send Message</>}
               </button>
             </form>
           </div>

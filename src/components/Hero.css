@@ -95,6 +95,22 @@
   color: var(--tx2);
   margin-bottom: 26px;
   font-weight: 300;
+  min-height: 1.7em;
+}
+
+.typewriter-text {
+  color: var(--p);
+  font-weight: 500;
+}
+.typewriter-cursor {
+  display: inline-block;
+  color: var(--p);
+  animation: cursorBlink 0.8s step-end infinite;
+  margin-left: 2px;
+}
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .hero-desc {
@@ -142,6 +158,7 @@
   border-radius: var(--r);
   overflow: hidden;
   position: relative;
+  animation: codeFloat 6s ease-in-out infinite;
 }
 .code-window::before {
   content: '';
@@ -149,6 +166,11 @@
   inset: 0;
   background: linear-gradient(135deg, rgba(129,140,248,0.04) 0%, transparent 60%);
   pointer-events: none;
+}
+
+@keyframes codeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 .win-header {
   display: flex;

@@ -17,14 +17,31 @@
   border: 1px solid var(--bd);
   border-left: 3px solid var(--p);
   border-radius: var(--r);
-  transition: border-color 0.3s, transform 0.3s var(--ease);
+  transition: border-color 0.3s, transform 0.3s var(--ease), box-shadow 0.3s;
+  position: relative;
 }
 .edu-card:hover {
   border-color: var(--bd-p);
   border-left-color: var(--p);
   transform: translateX(6px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
 }
 
+.edu-icon {
+  position: absolute;
+  top: 26px;
+  right: 28px;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r2);
+  background: var(--p-glow);
+  border: 1px solid var(--bd-p);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--p);
+  font-size: 1rem;
+}
 .edu-degree {
   font-family: var(--font-head);
   font-size: 1.1rem;
@@ -32,6 +49,7 @@
   color: var(--tx);
   letter-spacing: -0.02em;
   margin-bottom: 6px;
+  padding-right: 48px;
 }
 .edu-institution {
   font-size: 0.95rem;
@@ -49,6 +67,10 @@
   gap: 20px;
   font-size: 0.82rem;
   color: var(--tx3);
+}
+.edu-meta svg {
+  margin-right: 4px;
+  vertical-align: middle;
 }
 
 /* ── Certificates ──────────────────────────────────── */
@@ -117,7 +139,9 @@
 }
 .cert-date {
   margin-top: auto;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   padding: 4px 10px;
   background: var(--bg3);
   border-radius: 50px;
@@ -125,6 +149,9 @@
   color: var(--tx3);
   border: 1px solid var(--bd);
   width: fit-content;
+}
+.cert-date svg {
+  font-size: 0.65rem;
 }
 
 /* ── Courses ───────────────────────────────────────── */
@@ -178,4 +205,7 @@
   font-size: 0.72rem;
   color: var(--s);
   font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }

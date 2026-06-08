@@ -152,7 +152,7 @@ export const portfolioData = {
       description: "A full-featured task management app for organizing daily productivity. Users can create tasks with custom categories (Work, Personal, Health, Urgent) and priority levels, edit tasks inline, drag and drop to reorder, filter by status, and search in real time. All data persists across sessions using the browser's local storage. Built with HTML5, CSS3, and Vanilla JavaScript.",
       technologies: ["HTML", "CSS", "JavaScript"],
       type: "Frontend",
-      image: "/images/Screenshot 2026-05-26 202128.png"
+      image: "/images/Screenshot 2026-05-27 183322.png"
 , live: "https://day-flow-task-manager.vercel.app/",
   github: "https://github.com/Saam22/DayFlow-Task-Manager"
     },
@@ -161,7 +161,7 @@ export const portfolioData = {
       description:"A responsive e-learning platform UI showcasing a free courses catalog with dynamic filtering by category, live search, course enrollment tracking, modal previews, animated statistics counters, and scroll-reveal effects. Designed to simulate a real-world SaaS product interface. Built with HTML5, CSS3, and Vanilla JavaScript .",
       technologies: ["HTML", "CSS", "JavaScript"],
       type: "Frontend",
-      image: "/images/Screenshot 2026-05-26 202128.png"
+      image: "/images/Screenshot 2026-05-27 183219.png"
 , live: "https://learn-forge-beta.vercel.app/",
   github: "https://github.com/Saam22/LearnForge"
     }
