@@ -69,36 +69,36 @@ export const portfolioData = {
   },
   
   projects: [
-    {
-      title: "E-Store",
-      description: "React app contains main functionalities for e-commerce. Front-end version only.",
-      technologies: ["ReactJS", "HTML", "CSS", "JavaScript"],
-      type: "Frontend",
-      link: "#",
-      image: "/images/photo-1529107386315-e1a2ed48a620.jpg"
-, live: "https://pulse-peach-kappa.vercel.app/",
-  github: "https://github.com/Saam22/PULSE"
-    },
-    {
-      title: "Breast Cancer Website",
-      description: "Graduation project using Frontend, Backend and Machine Learning",
-      technologies: ["React", ".NET", "Machine Learning"],
-      type: "Full Stack",
-      link: "#",
-      image: "/images/photo-1529107386315-e1a2ed48a620.jpg"
-, live: "https://pulse-peach-kappa.vercel.app/",
-  github: "https://github.com/Saam22/PULSE"
-    },
-    {
-      title: "Vezeeta Website Clone",
-      description: "Web-based platform built using .NET technologies for managing medical content and appointments",
-      technologies: [".NET", "ASP.NET", "SQL"],
-      type: "Backend",
-      link: "#",
-      image: "/images/photo-1529107386315-e1a2ed48a620.jpg"
-, live: "https://pulse-peach-kappa.vercel.app/",
-  github: "https://github.com/Saam22/PULSE"
-    },
+//     {
+//       title: "E-Store",
+//       description: "React app contains main functionalities for e-commerce. Front-end version only.",
+//       technologies: ["ReactJS", "HTML", "CSS", "JavaScript"],
+//       type: "Frontend",
+//       link: "#",
+//       image: "/images/photo-1529107386315-e1a2ed48a620.jpg"
+// , live: "https://pulse-peach-kappa.vercel.app/",
+//   github: "https://github.com/Saam22/PULSE"
+//     },
+//     {
+//       title: "Breast Cancer Website",
+//       description: "Graduation project using Frontend, Backend and Machine Learning",
+//       technologies: ["React", ".NET", "Machine Learning"],
+//       type: "Full Stack",
+//       link: "#",
+//       image: "/images/photo-1529107386315-e1a2ed48a620.jpg"
+// , live: "https://pulse-peach-kappa.vercel.app/",
+//   github: "https://github.com/Saam22/PULSE"
+//     },
+//     {
+//       title: "Vezeeta Website Clone",
+//       description: "Web-based platform built using .NET technologies for managing medical content and appointments",
+//       technologies: [".NET", "ASP.NET", "SQL"],
+//       type: "Backend",
+//       link: "#",
+//       image: "/images/photo-1529107386315-e1a2ed48a620.jpg"
+// , live: "https://pulse-peach-kappa.vercel.app/",
+//   github: "https://github.com/Saam22/PULSE"
+//     },
     {
       title: "Furniture E-commerce Website",
       description: "Dynamic online platform for browsing and purchasing furniture products",
