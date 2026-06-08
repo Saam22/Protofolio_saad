@@ -102,12 +102,12 @@ export const portfolioData = {
     {
       title: "Furniture E-commerce Website",
       description: "Dynamic online platform for browsing and purchasing furniture products",
-      technologies: ["PHP", "MySQL", "HTML", "CSS"],
-      type: "Full Stack",
+      technologies: ["React 19","Vite 8", "Three.js", "HTML", "CSS", "JavaScript"],
+      type: "Frontend",
       link: "#",
-      image: "/images/photo-1529107386315-e1a2ed48a620.jpg"
-, live: "https://pulse-peach-kappa.vercel.app/",
-  github: "https://github.com/Saam22/PULSE"
+      image: "/images/home.png"
+, live: "https://furniture-e-commerce-website-seven.vercel.app/",
+  github: "https://github.com/Saam22/Furniture-E-commerce-Website"
     },
 
 {
