@@ -76,7 +76,7 @@ export const portfolioData = {
       type: "Frontend",
       link: "#",
       image: "/images/screen.png"
-, live: "https://skyfly-shbq.vercel.app/",
+, live: "https://skyfly-six.vercel.app/",
   github: "https://github.com/Saam22/skyfly"
     },
 //     {
