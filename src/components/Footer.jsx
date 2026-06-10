@@ -1,33 +1,66 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 import { portfolioData } from '../data/portfolioData';
 import './Contact.css';
 
 const Footer = () => (
-  <footer className="footer">
+  <motion.footer
+    className="footer"
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+  >
     <div className="container">
       <div className="footer-top">
-        <div className="footer-brand">
+        <motion.div
+          className="footer-brand"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <h3>SM<span>.</span></h3>
           <p>Full-Stack Web Developer</p>
-        </div>
-        <div className="footer-social">
-          <a href={`https://${portfolioData.personal.linkedin}`} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <FaLinkedin />
-          </a>
-          <a href={portfolioData.personal.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <FaGithub />
-          </a>
-          <a href={`mailto:${portfolioData.personal.email}`} aria-label="Email">
-            <FaEnvelope />
-          </a>
-        </div>
+        </motion.div>
+        <motion.div
+          className="footer-social"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+        >
+          {[
+            { icon: <FaLinkedin />, href: `https://${portfolioData.personal.linkedin}`, label: 'LinkedIn' },
+            { icon: <FaGithub />, href: portfolioData.personal.github, label: 'GitHub' },
+            { icon: <FaEnvelope />, href: `mailto:${portfolioData.personal.email}`, label: 'Email' },
+          ].map(({ icon, href, label }) => (
+            <motion.a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              whileHover={{ y: -6, borderColor: 'var(--bd-p)', color: 'var(--p)' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 12 }}
+            >
+              {icon}
+            </motion.a>
+          ))}
+        </motion.div>
       </div>
-      <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} {portfolioData.personal.name} — Built with React &amp; passion 🇪🇬</p>
-      </div>
+      <motion.div
+        className="footer-bottom"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+      >
+        <p>&copy; {new Date().getFullYear()} {portfolioData.personal.name} — Built with React &amp; passion 🇪🇬</p>
+      </motion.div>
     </div>
-  </footer>
+  </motion.footer>
 );
 
 export default Footer;

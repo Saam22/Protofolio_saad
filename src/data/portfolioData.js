@@ -2,7 +2,7 @@ export const portfolioData = {
   personal: {
     name: "Saad Mohamed Hassan",
     title: "Web Developer",
-    email: "saadmohamed222200@gmail.com",
+    email: "saadmhafez222002@gmail.com",
     phone: "01018310038",
     location: "Badr City, Cairo, Egypt",
     linkedin: "www.linkedin.com/in/saad-mohamed-hassan",
@@ -197,7 +197,13 @@ export const portfolioData = {
       title: "Design And Implement Efficient Database Solutions",
       issuer: "Manara Tech",
       date: "2026"
-    }
+    },
+    {
+      title: "React Hooks Crash Course",
+      issuer: "GreatStack",
+      date: "2026"
+    },
+ 
   ],
   
   courses: [

@@ -1,265 +1,274 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
-// ✅ FIXED: Removed FaSparkles (doesn't exist), using FaStar & FaMagic instead
-import { FaExternalLinkAlt, FaGithub, FaCode, FaRocket, FaStar, FaMagic } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaGithub, FaCode, FaRocket, FaStar, FaSearch } from 'react-icons/fa';
+import { staggerContainer, staggerItemScale, springHover } from '../animations';
 import './Projects.css';
 
 const typeConfig = {
-  Frontend: { class: 'frontend', color: '#818cf8', glow: 'rgba(129,140,248,0.4)', icon: <FaStar /> },
-  Backend: { class: 'backend', color: '#34d399', glow: 'rgba(52,211,153,0.4)', icon: <FaCode /> },
-  'Full Stack': { class: 'fullstack', color: '#f9a8d4', glow: 'rgba(249,168,212,0.4)', icon: <FaRocket /> }
+  Frontend: { cls: 'frontend', color: '#818cf8', glow: 'rgba(129,140,248,0.35)', icon: <FaStar /> },
+  Backend: { cls: 'backend', color: '#34d399', glow: 'rgba(52,211,153,0.35)', icon: <FaCode /> },
+  'Full Stack': { cls: 'fullstack', color: '#f472b6', glow: 'rgba(244,114,182,0.35)', icon: <FaRocket /> },
+};
+
+const ProjectCard = ({ project, index }) => {
+  const type = typeConfig[project.type] || typeConfig.Frontend;
+  const isFeatured = index === 0;
+
+  return (
+    <motion.article
+      className={`project-card glass${isFeatured ? ' featured' : ''}`}
+      style={{
+        '--type-color': type.color,
+        '--type-glow': type.glow,
+      }}
+      variants={staggerItemScale}
+      custom={index}
+      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+    >
+      <div className="card-glow" />
+      <div className="card-orb" />
+
+      <div className="card-badge">
+        <span className="badge-dot" style={{ background: type.color }} />
+        {type.icon} {project.type}
+      </div>
+
+      <div className="project-image-wrap">
+        <div className="project-img-inner">
+          <motion.img
+            src={project.image}
+            alt={project.title}
+            className="project-img"
+            loading="lazy"
+            whileHover={{ scale: 1.12 }}
+            transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+          />
+          <div className="img-shine" />
+        </div>
+        <motion.div
+          className="img-overlay glass"
+          initial={{ opacity: 0 }}
+          whileHover={{ opacity: 1 }}
+          transition={{ duration: 0.35 }}
+        >
+          <motion.div
+            className="overlay-inner"
+            initial={{ y: 16 }}
+            whileHover={{ y: 0 }}
+            transition={{ duration: 0.35 }}
+          >
+            <span className="overlay-icon">{type.icon}</span>
+            <span>Explore Project</span>
+            <div className="overlay-dots">
+              <span /><span /><span />
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      <div className="project-body">
+        <h3 className="project-title">
+          <span className="title-line" />
+          {project.title}
+        </h3>
+        <p className="project-desc">{project.description}</p>
+
+        <div className="tech-pills">
+          {project.technologies.map((tech, i) => (
+            <motion.span
+              key={i}
+              className="tech-pill"
+              initial={{ opacity: 0, y: 12, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05 + 0.3, type: 'spring', stiffness: 200 }}
+              whileHover={{ y: -2, scale: 1.06, background: 'var(--p)', color: 'var(--bg)' }}
+              title={tech}
+            >
+              {tech}
+              <span className="tech-tooltip">{tech}</span>
+            </motion.span>
+          ))}
+        </div>
+
+        <div className="project-links">
+          <motion.a
+            href={project.live || project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="proj-link live-link"
+            {...springHover}
+          >
+            <FaRocket /> Live Demo
+          </motion.a>
+          <motion.a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="proj-link code-link"
+            {...springHover}
+          >
+            <FaGithub /> Source
+          </motion.a>
+        </div>
+      </div>
+
+      <div className="corner tl" />
+      <div className="corner br" />
+    </motion.article>
+  );
 };
 
 const Projects = () => {
-  const cardsRef = useRef([]);
-  const [loaded, setLoaded] = useState(false);
+  const [filter, setFilter] = useState('All');
+  const [search, setSearch] = useState('');
 
-  // 3D Tilt Effect Logic
-  const handleMouseMove = (e, card) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = (y - centerY) / 15;
-    const rotateY = (centerX - x) / 15;
-    
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-    
-    const glow = card.querySelector('.glow-orb');
-    if (glow) {
-      const percentX = (x / rect.width) * 100;
-      const percentY = (y / rect.height) * 100;
-      glow.style.background = `radial-gradient(circle at ${percentX}% ${percentY}%, var(--type-glow), transparent 60%)`;
-    }
-  };
+  const types = ['All', ...new Set(portfolioData.projects.map((p) => p.type))];
 
-  const handleMouseLeave = (card) => {
-    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-  };
-
-  // Magnetic Button Effect
-  const handleButtonMove = (e, btn) => {
-    const rect = btn.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
-  };
-
-  const handleButtonLeave = (btn) => {
-    btn.style.transform = 'translate(0, 0)';
-  };
-
-  // Staggered entrance animation
-  useEffect(() => {
-    setLoaded(true);
-    
-    cardsRef.current.forEach((card, index) => {
-      if (card) {
-        card.style.setProperty('--stagger-delay', `${index * 0.15}s`);
-        
-        const badges = card.querySelectorAll('.tech-badge');
-        badges.forEach((badge, i) => {
-          badge.style.setProperty('--badge-delay', `${i * 0.08}s`);
-        });
-        
-        setTimeout(() => {
-          card.classList.add('animate-in');
-        }, index * 150);
-      }
+  const filtered = useMemo(() => {
+    return portfolioData.projects.filter((p) => {
+      const matchType = filter === 'All' || p.type === filter;
+      const matchSearch = !search || p.title.toLowerCase().includes(search.toLowerCase()) || p.technologies.some((t) => t.toLowerCase().includes(search.toLowerCase()));
+      return matchType && matchSearch;
     });
-  }, []);
+  }, [filter, search]);
 
-  // Intersection Observer for scroll animations
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
-    );
-
-    document.querySelectorAll('.project-card').forEach(card => observer.observe(card));
-    return () => observer.disconnect();
-  }, []);
-
-  const getProjectType = (type) => typeConfig[type] || typeConfig['Frontend'];
+  const getCount = (type) => {
+    if (type === 'All') return portfolioData.projects.length;
+    return portfolioData.projects.filter((p) => p.type === type).length;
+  };
 
   return (
     <section id="projects" className="projects-section">
-      {/* Floating Background Elements */}
-      <div className="floating-bg">
-        {[...Array(6)].map((_, i) => (
-          <div 
-            key={i} 
-            className="float-orb" 
+      <div className="gradient-bg" />
+      <div className="floating-orbs">
+        {[...Array(4)].map((_, i) => (
+          <div
+            key={i}
+            className="orb"
             style={{
-              '--orb-size': `${Math.random() * 100 + 50}px`,
-              '--orb-delay': `${Math.random() * 5}s`,
-              '--orb-duration': `${Math.random() * 10 + 15}s`,
-              '--orb-x': `${Math.random() * 100}%`,
-              '--orb-y': `${Math.random() * 100}%`,
+              '--s': `${Math.random() * 120 + 60}px`,
+              '--d': `${Math.random() * 5}s`,
+              '--dur': `${Math.random() * 12 + 14}s`,
+              '--x': `${Math.random() * 100}%`,
+              '--y': `${Math.random() * 100}%`,
             }}
           />
         ))}
       </div>
 
       <div className="container">
-        {/* Section Header */}
-        <div className={`section-header ${loaded ? 'animate-header' : ''}`}>
-          <span className="section-label">
-            <FaMagic className="label-icon" /> My Work
-          </span>
-          <h2 className="section-title">
-            Featured <span className="accent-word">Projects</span>
-          </h2>
-          <p className="section-subtitle">
-            A curated collection of projects showcasing my skills in modern web development
-          </p>
-          <div className="divider"></div>
-        </div>
-
-        <div className="projects-grid">
-          {portfolioData.projects.map((project, index) => {
-            const type = getProjectType(project.type);
-            return (
-              <article
-                key={index}
-                className="project-card"
-                ref={el => cardsRef.current[index] = el}
-                style={{ 
-                  '--type-color': type.color,
-                  '--type-glow': type.glow,
-                  '--stagger-index': index
-                }}
-                onMouseMove={(e) => handleMouseMove(e, cardsRef.current[index])}
-                onMouseLeave={() => handleMouseLeave(cardsRef.current[index])}
-              >
-                {/* Animated Gradient Border */}
-                <div className="gradient-border"></div>
-                
-                {/* Dynamic Glow Orb */}
-                <div className="glow-orb"></div>
-
-                {/* Type Indicator */}
-                <div className="type-indicator">
-                  <span className="type-wave" style={{ background: type.color }}></span>
-                  <span className="type-icon">{type.icon}</span>
-                </div>
-
-                {/* Project Image */}
-                <div className="project-image-wrapper">
-                  <div className="image-parallax">
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
-                      className="project-image"
-                      loading="lazy"
-                    />
-                    <div className="image-shine"></div>
-                  </div>
-                  
-                  {/* Hover Overlay */}
-                  <div className="image-overlay">
-                    <div className="overlay-content">
-                      <div className="overlay-icon-wrapper">
-                        <span className="overlay-icon">{type.icon}</span>
-                        <FaStar className="sparkle-icon" />
-                      </div>
-                      <span className="overlay-text">Explore Project</span>
-                      <div className="overlay-arrow">
-                        <span></span><span></span><span></span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Animated Type Badge */}
-                  <span className={`type-badge ${type.class}`}>
-                    <span className="badge-wave"></span>
-                    {type.icon} {project.type}
-                  </span>
-                </div>
-
-                {/* Project Content */}
-                <div className="project-content">
-                  <div className="project-header">
-                    <h3 className="project-title">
-                      <span className="title-underline"></span>
-                      {project.title}
-                    </h3>
-                  </div>
-
-                  <p className="project-desc">{project.description}</p>
-
-                  {/* Tech Stack */}
-                  <div className="tech-stack">
-                    {project.technologies.map((tech, i) => (
-                      <span 
-                        key={i} 
-                        className="tech-badge"
-                        style={{ '--tech-index': i }}
-                      >
-                        <span className="tech-dot"></span>
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Action Links */}
-                  <div className="project-links">
-                    <a 
-                      href={project.live || project.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="proj-link live"
-                      onMouseMove={(e) => handleButtonMove(e, e.currentTarget)}
-                      onMouseLeave={(e) => handleButtonLeave(e.currentTarget)}
-                    >
-                      <FaRocket className="link-icon" />
-                      <span className="link-text">Live Demo</span>
-                      <span className="link-glow"></span>
-                    </a>
-                    <a 
-                      href={project.github} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="proj-link code"
-                      onMouseMove={(e) => handleButtonMove(e, e.currentTarget)}
-                      onMouseLeave={(e) => handleButtonLeave(e.currentTarget)}
-                    >
-                      <FaGithub className="link-icon" />
-                      <span className="link-text">Source Code</span>
-                      <span className="link-glow"></span>
-                    </a>
-                  </div>
-                </div>
-
-                {/* Corner Decorations */}
-                <div className="corner-decoration top-right"></div>
-                <div className="corner-decoration bottom-left"></div>
-              </article>
-            );
-          })}
-        </div>
-
-        {/* View All Button */}
-        <div className="view-all-wrapper">
-          <a 
-            href="https://github.com/Saam22" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="btn-view-all"
+        <motion.div
+          className="projects-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.span
+            className="subsection-label"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <span className="btn-text">View More on GitHub</span>
-            <FaExternalLinkAlt className="btn-icon" />
-            <span className="btn-glow"></span>
-            <span className="btn-particles"></span>
-          </a>
-        </div>
+            <span className="dot" /> My Work
+          </motion.span>
+          <motion.h2
+            className="section-title"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Featured <span className="accent-word">Projects</span>
+          </motion.h2>
+          <motion.p
+            className="projects-sub"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            A curated collection of projects showcasing my skills in modern web development
+          </motion.p>
+        </motion.div>
+
+        <motion.div
+          className="projects-toolbar"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <div className="filter-tabs">
+            {types.map((t) => (
+              <motion.button
+                key={t}
+                className={`filter-tab${filter === t ? ' active' : ''}`}
+                onClick={() => setFilter(t)}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+              >
+                {t}
+                <span className="filter-count">{getCount(t)}</span>
+              </motion.button>
+            ))}
+          </div>
+          <div className="search-wrap">
+            <FaSearch className="search-icon" />
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Search projects..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="projects-grid"
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={staggerContainer.viewport}
+        >
+          <AnimatePresence mode="wait">
+            {filtered.length > 0 ? filtered.map((project, i) => (
+              <ProjectCard key={project.title} project={project} index={i} />
+            )) : (
+              <motion.div
+                className="projects-empty"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <p>No projects match your search. Try a different filter or keyword.</p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+
+        <motion.div
+          className="view-all"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <motion.a
+            href="https://github.com/Saam22"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-outline"
+            {...springHover}
+          >
+            View More on GitHub <FaExternalLinkAlt />
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );

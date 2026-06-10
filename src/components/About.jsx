@@ -1,91 +1,83 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaGraduationCap, FaBriefcase } from 'react-icons/fa';
+import { fadeIn, fadeInRight, staggerContainer, staggerItem, springIcon } from '../animations';
 import './About.css';
 
-const About = () => {
-  const tags = ['React JS', 'Node.js', 'Django', 'TypeScript', 'ASP.NET', 'PostgreSQL', 'MongoDB', 'Git'];
+const tags = ['React JS', 'Node.js', 'Django', 'TypeScript', 'ASP.NET', 'PostgreSQL', 'MongoDB', 'Git'];
 
-  return (
-    <section id="about" className="about-section">
-      <div className="container">
-        <h2 className="section-title fade-in">
-          About <span className="accent-word">Me</span>
-        </h2>
+const About = () => (
+  <section id="about" className="about-section">
+    <div className="gradient-bg" />
+    <div className="container">
+      <motion.h2 className="section-title" {...fadeIn}>
+        About <span className="accent-word">Me</span>
+      </motion.h2>
 
-        <div className="about-layout">
-          {/* Left */}
-          <div className="fade-in">
-            <div className="about-avatar-wrap">
-              <div className="about-avatar">SM</div>
-              <span className="about-avatar-badge">Cairo, Egypt</span>
-            </div>
+      <div className="about-layout">
+        <motion.div {...fadeIn}>
+          <motion.div
+            className="about-avatar-wrap"
+            whileHover={{ scale: 1.04 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+          >
+            <div className="about-avatar glass">SM</div>
+            <span className="about-badge glass">Cairo, Egypt</span>
+          </motion.div>
 
-            <h3 className="about-headline">
-              Full-Stack Developer with a <em>passion</em> for clean code
-            </h3>
-            <p className="about-body">{portfolioData.profile}</p>
+          <h3 className="about-headline">
+            Full-Stack Developer with a <em>passion</em> for clean code
+          </h3>
+          <p className="about-body">{portfolioData.profile}</p>
 
-            <div className="about-tags">
-              {tags.map((t) => (
-                <span key={t} className="about-tag">{t}</span>
-              ))}
-            </div>
-          </div>
+          <motion.div
+            className="about-tags"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={staggerContainer.viewport}
+          >
+            {tags.map((t) => (
+              <motion.span key={t} className="about-tag" {...staggerItem}>
+                {t}
+              </motion.span>
+            ))}
+          </motion.div>
+        </motion.div>
 
-          {/* Right */}
-          <div className="about-sidebar fade-in">
-            <div className="info-block">
-              <div className="info-block-header"><FaBriefcase /> Personal Info</div>
-              <div className="info-row">
-                <FaMapMarkerAlt className="info-icon" />
-                <span className="label">Location</span>
-                <span className="value">{portfolioData.personal.location}</span>
-              </div>
-              <div className="info-row">
-                <FaEnvelope className="info-icon" />
-                <span className="label">Email</span>
-                <span className="value accent">{portfolioData.personal.email}</span>
-              </div>
-              <div className="info-row">
-                <FaPhone className="info-icon" />
-                <span className="label">Phone</span>
-                <span className="value">{portfolioData.personal.phone}</span>
-              </div>
-            </div>
+        <motion.div className="about-sidebar" {...fadeInRight}>
+          <motion.div className="info-block glass" whileHover={{ borderColor: 'var(--bd-p)' }}>
+            <div className="info-header"><FaBriefcase /> Personal Info</div>
+            <InfoRow icon={<FaMapMarkerAlt />} label="Location" value={portfolioData.personal.location} />
+            <InfoRow icon={<FaEnvelope />} label="Email" value={portfolioData.personal.email} accent />
+            <InfoRow icon={<FaPhone />} label="Phone" value={portfolioData.personal.phone} />
+          </motion.div>
 
-            <div className="info-block">
-              <div className="info-block-header"><FaGraduationCap /> Education</div>
-              <div className="info-row">
-                <span className="label">Degree</span>
-                <span className="value">Bachelor of CS</span>
-              </div>
-              <div className="info-row">
-                <span className="label">University</span>
-                <span className="value">Ain Shams University</span>
-              </div>
-              <div className="info-row">
-                <span className="label">Year</span>
-                <span className="value">2019 – 2024</span>
-              </div>
-            </div>
+          <motion.div className="info-block glass" whileHover={{ borderColor: 'var(--bd-p)' }}>
+            <div className="info-header"><FaGraduationCap /> Education</div>
+            <InfoRow label="Degree" value="Bachelor of CS" />
+            <InfoRow label="University" value="Ain Shams University" />
+            <InfoRow label="Year" value="2019 – 2024" />
+          </motion.div>
 
-            <div className="info-block">
-              <div className="info-block-header"><FaBriefcase /> Status</div>
-              <div className="info-row">
-                <span className="label">Availability</span>
-                <span className="value accent">Open to work</span>
-              </div>
-              <div className="info-row">
-                <span className="label">Type</span>
-                <span className="value">Full-time / Remote</span>
-              </div>
-            </div>
-          </div>
-        </div>
+          <motion.div className="info-block glass" whileHover={{ borderColor: 'var(--bd-p)' }}>
+            <div className="info-header"><FaBriefcase /> Status</div>
+            <InfoRow label="Availability" value="Open to work" accent />
+            <InfoRow label="Type" value="Full-time / Remote" />
+          </motion.div>
+        </motion.div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
+
+const InfoRow = ({ icon, label, value, accent }) => (
+  <div className="info-row">
+    {icon && <span className="info-icon">{icon}</span>}
+    <span className="info-label">{label}</span>
+    <span className={`info-value${accent ? ' accent' : ''}`}>{value}</span>
+  </div>
+);
 
 export default About;
