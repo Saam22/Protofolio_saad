@@ -22,7 +22,9 @@ const About = () => (
             whileHover={{ scale: 1.04 }}
             transition={{ type: 'spring', stiffness: 300, damping: 15 }}
           >
-            <div className="about-avatar glass">SM</div>
+            <div className="about-avatar glass">
+              <img src="/images/my_image.png" alt={portfolioData.personal.name} className="about-avatar-img" />
+            </div>
             <span className="about-badge glass">Cairo, Egypt</span>
           </motion.div>
 
