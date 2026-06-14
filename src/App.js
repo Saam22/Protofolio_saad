@@ -32,6 +32,7 @@ export const scrollToSection = (id) => {
   if (!el) return;
   const top = el.getBoundingClientRect().top + window.scrollY - 80;
   window.scrollTo({ top, behavior: 'smooth' });
+  window.dispatchEvent(new CustomEvent('navigate', { detail: { section: id } }));
 };
 
 export const useActiveSection = (ids, offset = 120) => {
@@ -84,6 +85,7 @@ const LoadingScreen = ({ onFinish }) => {
             transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
           />
         </div>
+        <p className="loader-text">Loading experience...</p>
       </div>
     </motion.div>
   );
@@ -117,11 +119,15 @@ function App() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
+          <motion.div
+            className="scroll-progress"
+            style={{ width: `${scrollProgress}%` }}
+            animate={{ opacity: scrollProgress > 0 ? 1 : 0 }}
+          />
           <Header />
           <main>
-            {sections.map(({ id, Component }) => (
-              <MotionSection key={id} {...fadeInUp}>
+            {sections.map(({ id, Component }, idx) => (
+              <MotionSection key={id} {...fadeInUp} transition={{ ...fadeInUp.transition, delay: idx * 0.05 }}>
                 <Component />
               </MotionSection>
             ))}

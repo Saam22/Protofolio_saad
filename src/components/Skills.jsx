@@ -54,7 +54,13 @@ const SkillsBar = ({ name, level, delay }) => {
         </motion.span>
       </div>
       <div className="skill-bar-track">
-        <div className="skill-bar-fill" style={{ width: `${width}%` }} />
+        <motion.div
+          className="skill-bar-fill"
+          style={{ width: `${width}%` }}
+          initial={{ width: '0%' }}
+          animate={isInView ? { width: `${level}%` } : { width: '0%' }}
+          transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1], delay: delay / 1000 }}
+        />
       </div>
     </div>
   );

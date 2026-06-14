@@ -42,6 +42,7 @@ const Footer = () => (
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
+              className="social-icon-rotate"
               whileHover={{ y: -6, borderColor: 'var(--bd-p)', color: 'var(--p)' }}
               transition={{ type: 'spring', stiffness: 300, damping: 12 }}
             >
@@ -57,7 +58,7 @@ const Footer = () => (
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <p>&copy; {new Date().getFullYear()} {portfolioData.personal.name} — Built with React &amp; passion 🇪🇬</p>
+        <p>&copy; {new Date().getFullYear()} {portfolioData.personal.name} — Built with React &amp; passion</p>
       </motion.div>
     </div>
   </motion.footer>

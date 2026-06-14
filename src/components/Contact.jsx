@@ -3,8 +3,7 @@ import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaPhone, FaLinkedin, FaMapMarkerAlt, FaPaperPlane, FaSpinner, FaCopy, FaCheck } from 'react-icons/fa';
 import { portfolioData } from '../data/portfolioData';
-import { fadeIn, fadeInLeft, fadeInRight } from '../animations';
-import { springHover } from '../animations';
+import { fadeIn, fadeInLeft, fadeInRight, springHover, springRotate } from '../animations';
 import { useToast } from '../hooks/useToast';
 import './Contact.css';
 
@@ -70,7 +69,7 @@ const Contact = () => {
               {items.map((item) => {
                 const inner = (
                   <>
-                    <motion.div className="ci-icon" whileHover={{ scale: 1.1, borderColor: 'var(--bd-p)' }}>
+                    <motion.div className="ci-icon" {...springRotate}>
                       {item.icon}
                     </motion.div>
                     <div className="ci-text">
@@ -91,7 +90,7 @@ const Contact = () => {
             <motion.button
               className="copy-email-btn"
               onClick={copyEmail}
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.02, borderColor: 'var(--bd-p)', color: 'var(--p)', background: 'var(--p-glow)' }}
               whileTap={{ scale: 0.98 }}
             >
               {copied ? (

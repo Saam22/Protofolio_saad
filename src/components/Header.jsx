@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { FaBars, FaTimes, FaMoon, FaSun } from 'react-icons/fa';
+import { FaBars, FaTimes, FaMoon, FaSun, FaCode } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
-import { springHover } from '../animations';
 import { scrollToSection, useActiveSection } from '../App';
 import './Header.css';
 
 const links = [
-  { name: 'Home', href: '#home', id: 'home' },
+  { name: 'Home', href: '#hero', id: 'hero' },
   { name: 'About', href: '#about', id: 'about' },
   { name: 'Skills', href: '#skills', id: 'skills' },
   { name: 'Experience', href: '#experience', id: 'experience' },
@@ -55,14 +54,14 @@ const Header = () => {
     >
       <nav className="navbar container">
         <motion.a
-          href="#home"
+          href="#hero"
           className="nav-brand"
-          onClick={(e) => handleClick(e, 'home')}
+          onClick={(e) => handleClick(e, 'hero')}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          SM<span>.</span>
+          <FaCode className="nav-brand-icon" /> SM<span>.</span>
         </motion.a>
 
         <ul className={`nav-menu${isOpen ? ' active' : ''}`}>
@@ -79,7 +78,8 @@ const Header = () => {
                 onClick={(e) => handleClick(e, l.id)}
               >
                 <span className="nav-indicator" />
-                {l.name}
+                <span className="nav-link-text">{l.name}</span>
+                <span className="nav-underline" />
               </a>
             </motion.li>
           ))}
@@ -90,7 +90,8 @@ const Header = () => {
             onClick={toggleTheme}
             className="theme-btn"
             aria-label="Toggle theme"
-            {...springHover}
+            whileHover={{ scale: 1.1, borderColor: 'var(--p)', color: 'var(--p)' }}
+            whileTap={{ scale: 0.9 }}
           >
             <motion.span
               key={theme}
@@ -101,17 +102,20 @@ const Header = () => {
               {theme === 'dark' ? <FaSun /> : <FaMoon />}
             </motion.span>
           </motion.button>
+
           <motion.button
             className="nav-toggle"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Menu"
-            {...springHover}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             {isOpen ? <FaTimes /> : <FaBars />}
           </motion.button>
         </div>
       </nav>
 
+      {/* Mobile menu overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div

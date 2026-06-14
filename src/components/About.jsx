@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaGraduationCap, FaBriefcase } from 'react-icons/fa';
-import { fadeIn, fadeInRight, staggerContainer, staggerItem, springIcon } from '../animations';
+import { fadeIn, fadeInRight, staggerContainer, staggerItem } from '../animations';
 import './About.css';
 
 const tags = ['React JS', 'Node.js', 'Django', 'TypeScript', 'ASP.NET', 'PostgreSQL', 'MongoDB', 'Git'];
@@ -39,7 +39,7 @@ const About = () => (
             viewport={staggerContainer.viewport}
           >
             {tags.map((t) => (
-              <motion.span key={t} className="about-tag" {...staggerItem}>
+              <motion.span key={t} className="about-tag" variants={staggerItem} whileHover={{ y: -3, borderColor: 'var(--p)', color: 'var(--p)', background: 'var(--p-glow)' }}>
                 {t}
               </motion.span>
             ))}
@@ -47,21 +47,21 @@ const About = () => (
         </motion.div>
 
         <motion.div className="about-sidebar" {...fadeInRight}>
-          <motion.div className="info-block glass" whileHover={{ borderColor: 'var(--bd-p)' }}>
+          <motion.div className="info-block glass" whileHover={{ borderColor: 'var(--bd-p)', y: -4 }}>
             <div className="info-header"><FaBriefcase /> Personal Info</div>
             <InfoRow icon={<FaMapMarkerAlt />} label="Location" value={portfolioData.personal.location} />
             <InfoRow icon={<FaEnvelope />} label="Email" value={portfolioData.personal.email} accent />
             <InfoRow icon={<FaPhone />} label="Phone" value={portfolioData.personal.phone} />
           </motion.div>
 
-          <motion.div className="info-block glass" whileHover={{ borderColor: 'var(--bd-p)' }}>
+          <motion.div className="info-block glass" whileHover={{ borderColor: 'var(--bd-p)', y: -4 }}>
             <div className="info-header"><FaGraduationCap /> Education</div>
             <InfoRow label="Degree" value="Bachelor of CS" />
             <InfoRow label="University" value="Ain Shams University" />
             <InfoRow label="Year" value="2019 – 2024" />
           </motion.div>
 
-          <motion.div className="info-block glass" whileHover={{ borderColor: 'var(--bd-p)' }}>
+          <motion.div className="info-block glass" whileHover={{ borderColor: 'var(--bd-p)', y: -4 }}>
             <div className="info-header"><FaBriefcase /> Status</div>
             <InfoRow label="Availability" value="Open to work" accent />
             <InfoRow label="Type" value="Full-time / Remote" />

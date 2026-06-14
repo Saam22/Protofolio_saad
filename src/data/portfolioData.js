@@ -6,11 +6,11 @@ export const portfolioData = {
     phone: "01018310038",
     location: "Badr City, Cairo, Egypt",
     linkedin: "www.linkedin.com/in/saad-mohamed-hassan",
-    github: "https://github.com/Saam22",  
+    github: "https://github.com/Saam22",
   },
-  
+
   profile: `Full-Stack Developer passionate about building responsive and dynamic web applications using HTML, CSS, JavaScript, and React.js. Experienced with Node.js and Django for back-end development. Solid understanding of Object-Oriented Programming, Data Structures, and Design Patterns. Graduated from Ain Shams University (Faculty of Computer and Information Science) with hands-on experience through internships at ITI and Mentality. Always learning and open to new opportunities.`,
-  
+
   education: [
     {
       degree: "Bachelor of Computer Science",
@@ -20,7 +20,7 @@ export const portfolioData = {
       location: "Cairo, Egypt"
     }
   ],
-  
+
   experience: [
     {
       title: "Internship - Front End Using ReactJS",
@@ -44,7 +44,7 @@ export const portfolioData = {
       period: "2019 – 2020"
     }
   ],
-  
+
   skills: {
     programmingLanguages: ["C++", "Java", "Python", "R", "C#", "SQL", "Dart", "JavaScript", "TypeScript"],
     frontend: {
@@ -54,7 +54,6 @@ export const portfolioData = {
     },
     backend: {
       dotnet: ["C#", "ASP.NET", "Entity Framework Core", "LINQ", "SQL Server", "REST API"],
-      // ✅ تم الإضافة حسب طلبك
       nodejs: ["Node.js", "Express.js", "MongoDB", "REST API", "JWT Authentication"],
       django: ["Django", "Django REST Framework", "PostgreSQL", "Python"]
     },
@@ -67,106 +66,114 @@ export const portfolioData = {
       "Presentation Skills"
     ]
   },
-  
+
   projects: [
     {
+      id: 1,
       title: "SkyFly",
+      subtitle: "Flight Booking Platform",
       description: "Comprehensive web platform for searching, comparing, and booking flight tickets across multiple airlines. Features an intuitive search interface with smart filters, detailed flight information, interactive seat map, and multi-step booking.",
       technologies: ["ReactJS","Vite", "HTML", "CSS", "JavaScript"],
       type: "Frontend",
-      link: "#",
-      image: "/images/screen.png"
-, live: "https://skyfly-six.vercel.app/",
-  github: "https://github.com/Saam22/skyfly"
+      image: "/images/screen.png",
+      live: "https://skyfly-six.vercel.app/",
+      github: "https://github.com/Saam22/skyfly",
+      features: ["Flight search & compare", "Multi-step booking", "Interactive seat map", "Price filtering"],
+      featured: true
     },
-//     {
-//       title: "Breast Cancer Website",
-//       description: "Graduation project using Frontend, Backend and Machine Learning",
-//       technologies: ["React", ".NET", "Machine Learning"],
-//       type: "Full Stack",
-//       link: "#",
-//       image: "/images/photo-1529107386315-e1a2ed48a620.jpg"
-// , live: "https://pulse-peach-kappa.vercel.app/",
-//   github: "https://github.com/Saam22/PULSE"
-//     },
-//     {
-//       title: "Vezeeta Website Clone",
-//       description: "Web-based platform built using .NET technologies for managing medical content and appointments",
-//       technologies: [".NET", "ASP.NET", "SQL"],
-//       type: "Backend",
-//       link: "#",
-//       image: "/images/photo-1529107386315-e1a2ed48a620.jpg"
-// , live: "https://pulse-peach-kappa.vercel.app/",
-//   github: "https://github.com/Saam22/PULSE"
-//     },
     {
-      title: "Furniture E-commerce Website",
-      description: "Dynamic online platform for browsing and purchasing furniture products",
+      id: 2,
+      title: "Furniture E-commerce",
+      subtitle: "Online Furniture Store",
+      description: "Dynamic online platform for browsing and purchasing furniture products with modern UI and smooth animations.",
       technologies: ["React 19","Vite 8", "Three.js", "HTML", "CSS", "JavaScript"],
       type: "Frontend",
-      link: "#",
-      image: "/images/home.png"
-, live: "https://furniture-e-commerce-website-seven.vercel.app/",
-  github: "https://github.com/Saam22/Furniture-E-commerce-Website"
+      image: "/images/home.png",
+      live: "https://furniture-e-commerce-website-seven.vercel.app/",
+      github: "https://github.com/Saam22/Furniture-E-commerce-Website",
+      features: ["Product catalog", "Shopping cart", "3D product viewer", "Responsive design"],
+      featured: false
     },
-
-{
-  title: "PULSE",
-  description: "Designed and developed PULSE news website to deliver diverse content (political, sports, social) through a modern, user-friendly interface. The project focuses on comfortable reading experience with smart content organization and fast navigation.",
-  technologies: ["HTML5", "CSS3", "JavaScript , Bootstrap"],
-  type: "Frontend",
-  image: "/images/photo-1529107386315-e1a2ed48a620.jpg",
-
-  live: "https://pulse-peach-kappa.vercel.app/",
-  github: "https://github.com/Saam22/PULSE"
-},{
-  title: "Nile & Clay",
-  description: "Designed and developed a professional website for Nile & Clay restaurant that reflects its premium brand identity while delivering a seamless user experience. The site features a fully responsive layout, dual theme support (Light/Dark Mode), and an interactive menu system with dynamic filtering.",
-  technologies: ["HTML5", "CSS3", "JavaScript , Bootstrap"],
-  type: "Frontend",
-  image: "/images/Screenshot 2026-05-03 112254.png",
-
-  live: "https://nile-clay.vercel.app/",
-  github: "https://github.com/Saam22/Nile_Clay"
-},
     {
+      id: 3,
+      title: "PULSE",
+      subtitle: "News & Media Portal",
+      description: "Designed and developed PULSE news website to deliver diverse content (political, sports, social) through a modern, user-friendly interface with smart content organization and fast navigation.",
+      technologies: ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
+      type: "Frontend",
+      image: "/images/photo-1529107386315-e1a2ed48a620.jpg",
+      live: "https://pulse-peach-kappa.vercel.app/",
+      github: "https://github.com/Saam22/PULSE",
+      features: ["Content categorization", "Smart search", "Responsive layout", "Fast navigation"],
+      featured: false
+    },
+    {
+      id: 4,
+      title: "Nile & Clay",
+      subtitle: "Restaurant Brand Website",
+      description: "Professional website for Nile & Clay restaurant that reflects its premium brand identity with responsive layout, dual theme support, and interactive menu system with dynamic filtering.",
+      technologies: ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
+      type: "Frontend",
+      image: "/images/Screenshot 2026-05-03 112254.png",
+      live: "https://nile-clay.vercel.app/",
+      github: "https://github.com/Saam22/Nile_Clay",
+      features: ["Dual theme (light/dark)", "Interactive menu", "Dynamic filtering", "Responsive design"],
+      featured: false
+    },
+    {
+      id: 5,
       title: "Harmony Flow",
-      description: "A fully interactive, feature-rich web-based music player built with HTML5, CSS3, and JavaScript. This modern music player provides a complete listening experience with playlist management, playback controls, audio visualizer, shuffle/repeat modes, speed control, and a beautiful responsive design.",
+      subtitle: "Music Player App",
+      description: "A fully interactive, feature-rich web-based music player with playlist management, playback controls, audio visualizer, shuffle/repeat modes, speed control, and beautiful responsive design.",
       technologies: ["HTML5", "CSS3", "JavaScript"],
       type: "Frontend",
-      image: "/images/Screenshot 2026-05-03 130115.png"
-, live: "https://music-player-one-gules.vercel.app/",
-  github: "https://github.com/Saam22/Music_Player"
+      image: "/images/Screenshot 2026-05-03 130115.png",
+      live: "https://music-player-one-gules.vercel.app/",
+      github: "https://github.com/Saam22/Music_Player",
+      features: ["Audio visualizer", "Playlist management", "Shuffle/repeat modes", "Speed control"],
+      featured: false
     },
     {
+      id: 6,
       title: "FootballIQ",
-      description: "Developed a feature-rich football trivia game with 50+ questions, 3 difficulty levels, lifelines, daily challenges, streak bonuses, and persistent stats via localStorage. Implemented dynamic scoring, audio feedback, confetti celebrations, and responsive dark/light themes. Demonstrated expertise in vanilla frontend development, gamification, and state management.",
+      subtitle: "Football Trivia Game",
+      description: "Feature-rich football trivia game with 50+ questions, 3 difficulty levels, lifelines, daily challenges, streak bonuses, and persistent stats via localStorage.",
       technologies: ["HTML", "CSS", "JavaScript"],
       type: "Frontend",
-      image: "/images/Screenshot 2026-05-26 202128.png"
-, live: "https://football-quiz-six.vercel.app/",
-  github: "https://github.com/Saam22/FootballQuiz"
+      image: "/images/Screenshot 2026-05-26 202128.png",
+      live: "https://football-quiz-six.vercel.app/",
+      github: "https://github.com/Saam22/FootballQuiz",
+      features: ["50+ questions", "3 difficulty levels", "Lifelines & bonuses", "Persistent stats"],
+      featured: false
     },
-        {
+    {
+      id: 7,
       title: "DayFlow",
-      description: "A full-featured task management app for organizing daily productivity. Users can create tasks with custom categories (Work, Personal, Health, Urgent) and priority levels, edit tasks inline, drag and drop to reorder, filter by status, and search in real time. All data persists across sessions using the browser's local storage. Built with HTML5, CSS3, and Vanilla JavaScript.",
+      subtitle: "Task Management App",
+      description: "A full-featured task management app with custom categories (Work, Personal, Health, Urgent), priority levels, inline editing, drag & drop reorder, and real-time search.",
       technologies: ["HTML", "CSS", "JavaScript"],
       type: "Frontend",
-      image: "/images/Screenshot 2026-05-27 183322.png"
-, live: "https://day-flow-task-manager.vercel.app/",
-  github: "https://github.com/Saam22/DayFlow-Task-Manager"
+      image: "/images/Screenshot 2026-05-27 183322.png",
+      live: "https://day-flow-task-manager.vercel.app/",
+      github: "https://github.com/Saam22/DayFlow-Task-Manager",
+      features: ["Drag & drop reorder", "Custom categories", "Real-time search", "LocalStorage persistence"],
+      featured: false
     },
-        {
+    {
+      id: 8,
       title: "LearnForge",
-      description:"A responsive e-learning platform UI showcasing a free courses catalog with dynamic filtering by category, live search, course enrollment tracking, modal previews, animated statistics counters, and scroll-reveal effects. Designed to simulate a real-world SaaS product interface. Built with HTML5, CSS3, and Vanilla JavaScript .",
+      subtitle: "E-Learning Platform",
+      description: "A responsive e-learning platform UI showcasing a free courses catalog with dynamic filtering by category, live search, course enrollment tracking, modal previews, and animated statistics counters.",
       technologies: ["HTML", "CSS", "JavaScript"],
       type: "Frontend",
-      image: "/images/Screenshot 2026-05-27 183219.png"
-, live: "https://learn-forge-beta.vercel.app/",
-  github: "https://github.com/Saam22/LearnForge"
+      image: "/images/Screenshot 2026-05-27 183219.png",
+      live: "https://learn-forge-beta.vercel.app/",
+      github: "https://github.com/Saam22/LearnForge",
+      features: ["Course catalog", "Category filtering", "Enrollment tracking", "Animated counters"],
+      featured: false
     }
   ],
-  
+
   certificates: [
     {
       title: "Advanced Front-End Web Development using React JS",
@@ -203,12 +210,11 @@ export const portfolioData = {
       issuer: "GreatStack",
       date: "2026"
     },
- 
   ],
-  
+
   courses: [
     "JavaScript Ultimate Guide - Udemy",
-    "CSS3 Ultimate Guide - Udemy", 
+    "CSS3 Ultimate Guide - Udemy",
     "The Web Front End Learning - Udemy",
     "Learn HTML & CSS - Mahara Tech",
     "Database Fundamentals - Mahara Tech",

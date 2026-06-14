@@ -15,7 +15,7 @@ main {
   height: 2px;
   background: linear-gradient(90deg, var(--p), var(--s), var(--a));
   z-index: 1001;
-  transition: width 0.1s linear;
+  transition: width 0.1s linear, opacity 0.3s;
 }
 
 /* ─── LOADING SCREEN ──────────────────── */
@@ -39,9 +39,11 @@ main {
   font-size: 2.5rem;
   font-weight: 800;
   background: linear-gradient(135deg, var(--p), var(--s), var(--a));
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradientShift 4s ease-in-out infinite;
   letter-spacing: -0.04em;
 }
 .loader-bar-track {
@@ -55,6 +57,16 @@ main {
   height: 100%;
   background: linear-gradient(90deg, var(--p), var(--s));
   border-radius: 2px;
+}
+.loader-text {
+  font-size: 0.8rem;
+  color: var(--tx3);
+  font-weight: 400;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 /* ─── CURSOR ──────────────────────────── */

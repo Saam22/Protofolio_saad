@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import { motion, useInView } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
-import { springHover } from '../animations';
 import { scrollToSection } from '../App';
 import './Hero.css';
 
@@ -116,8 +115,8 @@ const Hero = () => {
   const scroll = (id) => (e) => { e.preventDefault(); scrollToSection(id); };
 
   return (
-    <section id="home" className="hero-section">
-      <div className="gradient-bg" />
+    <section id="hero" className="hero-section">
+      <div className="gradient-bg hero-gradient" />
       <Particles />
       <div className="container hero-content">
         <motion.div
@@ -175,17 +174,21 @@ const Hero = () => {
           >
             <motion.a
               href="#projects"
-              className="btn btn-primary"
+              className="btn btn-primary cta-btn"
               onClick={scroll('projects')}
-              {...springHover}
+              whileHover={{ scale: 1.05, boxShadow: '0 12px 32px rgba(var(--p-rgb), 0.4)' }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >
               View Projects <FaArrowRight />
             </motion.a>
             <motion.a
               href="#contact"
-              className="btn btn-outline"
+              className="btn btn-outline cta-btn"
               onClick={scroll('contact')}
-              {...springHover}
+              whileHover={{ scale: 1.05, borderColor: 'var(--p)', color: 'var(--p)' }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >
               Contact Me
             </motion.a>
@@ -202,12 +205,17 @@ const Hero = () => {
               { num: 8, suffix: '+', label: 'Projects built' },
               { num: 3, suffix: '', label: 'Internships' },
             ].map((s) => (
-              <div key={s.label} className="stat-item">
+              <motion.div
+                key={s.label}
+                className="stat-item"
+                whileHover={{ scale: 1.08 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
                 <div className="stat-num">
                   <AnimatedCounter target={s.num} suffix={s.suffix} />
                 </div>
                 <div className="stat-label">{s.label}</div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </motion.div>
