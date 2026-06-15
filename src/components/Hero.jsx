@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight, FaDownload } from 'react-icons/fa';
 import { motion, useInView } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import { scrollToSection } from '../App';
@@ -191,6 +191,16 @@ const Hero = () => {
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >
               Contact Me
+            </motion.a>
+            <motion.a
+              href="/cv.pdf"
+              download="Saad_Mohamed_Hassan_CV"
+              className="btn btn-outline cta-btn"
+              whileHover={{ scale: 1.05, borderColor: '#34d399', color: '#34d399' }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+            >
+              <FaDownload /> CV
             </motion.a>
           </motion.div>
 
