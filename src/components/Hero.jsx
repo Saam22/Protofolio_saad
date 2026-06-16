@@ -193,7 +193,7 @@ const Hero = () => {
               Contact Me
             </motion.a>
             <motion.a
-              href="/cv.pdf"
+              href="images/Saad_Hassan_FullStack_v2.pdf"
               download="Saad_Mohamed_Hassan_CV"
               className="btn btn-outline cta-btn"
               whileHover={{ scale: 1.05, borderColor: '#34d399', color: '#34d399' }}
