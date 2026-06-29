@@ -62,19 +62,24 @@ const AnimatedCounter = ({ target, suffix = '' }) => {
   return <span ref={ref}>{count}{suffix}</span>;
 };
 
-const Particles = ({ count = 30 }) => {
+const Particles = ({ count = 40 }) => {
   const particles = useMemo(
     () =>
-      Array.from({ length: count }, (_, i) => ({
-        id: i,
-        size: Math.random() * 3 + 2,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        dx: (Math.random() - 0.5) * 300,
-        dy: (Math.random() - 0.5) * 300,
-        duration: Math.random() * 12 + 12,
-        delay: Math.random() * 6,
-      })),
+      Array.from({ length: count }, (_, i) => {
+        const isAmber = Math.random() > 0.5;
+        return {
+          id: i,
+          size: Math.random() * 4 + 1.5,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          dx: (Math.random() - 0.5) * 400,
+          dy: (Math.random() - 0.5) * 400,
+          duration: Math.random() * 16 + 14,
+          delay: Math.random() * 8,
+          color: isAmber ? 'var(--p)' : 'var(--s)',
+          glow: isAmber ? 'var(--p-glow)' : 'var(--s-glow)',
+        };
+      }),
     [count]
   );
 
@@ -92,12 +97,30 @@ const Particles = ({ count = 30 }) => {
             '--dy': `${p.dy}px`,
             '--pd': `${p.duration}s`,
             '--pdelay': `${p.delay}s`,
+            background: p.color,
+            boxShadow: `0 0 ${p.size * 3}px ${p.color}`,
           }}
         />
       ))}
     </div>
   );
 };
+
+const Scanlines = () => (
+  <div className="scanlines" aria-hidden="true" />
+);
+
+const GridOverlay = () => (
+  <div className="hero-grid-overlay" aria-hidden="true" />
+);
+
+const DiagonalAccent = () => (
+  <div className="diagonal-accent" aria-hidden="true" />
+);
+
+const NoiseOverlay = () => (
+  <div className="noise-overlay" aria-hidden="true" />
+);
 
 const Hero = () => {
   const codeRef = useRef(null);
@@ -114,53 +137,61 @@ const Hero = () => {
 
   const scroll = (id) => (e) => { e.preventDefault(); scrollToSection(id); };
 
+  const nameParts = portfolioData.personal.name.split(' ');
+
   return (
     <section id="hero" className="hero-section">
+      <NoiseOverlay />
+      <GridOverlay />
+      <DiagonalAccent />
       <div className="gradient-bg hero-gradient" />
       <Particles />
       <div className="container hero-content">
-        <motion.div
-          className="hero-text"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.23, 1, 0.32, 1], delay: 0.3 }}
-        >
+        <div className="hero-text">
           <motion.div
             className="subsection-label"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
           >
             <span className="dot" />
             Available for opportunities
           </motion.div>
 
-          <motion.h1
-            className="hero-name"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.23, 1, 0.32, 1] }}
-          >
-            {portfolioData.personal.name.split(' ').slice(0, 2).join(' ')}
-            <span className="hero-name-accent">
-              {portfolioData.personal.name.split(' ').slice(2).join(' ')}
-            </span>
-          </motion.h1>
+          <h1 className="hero-name">
+            {nameParts.map((part, i) => (
+              <motion.span
+                key={i}
+                className={`hero-name-line ${i === nameParts.length - 1 ? 'hero-name-accent' : ''}`}
+                initial={{ opacity: 0, y: 60, rotateX: 15 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.5 + i * 0.15,
+                  ease: [0.23, 1, 0.32, 1],
+                }}
+              >
+                {part}
+              </motion.span>
+            ))}
+          </h1>
 
           <motion.p
             className="hero-role"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
           >
-            <Typewriter texts={roles} /> <span className="hero-role-divider">·</span> React / Django / Node.js
+            <Typewriter texts={roles} />{' '}
+            <span className="hero-role-divider">—</span>{' '}
+            React / Django / Node.js
           </motion.p>
 
           <motion.p
             className="hero-desc"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.0 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
           >
             I build fast, accessible, and visually stunning web experiences.
             Passionate about clean architecture, modern UI, and shipping things that matter.
@@ -170,13 +201,13 @@ const Hero = () => {
             className="hero-actions"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
+            transition={{ duration: 0.6, delay: 1.4 }}
           >
             <motion.a
               href="#projects"
               className="btn btn-primary cta-btn"
               onClick={scroll('projects')}
-              whileHover={{ scale: 1.05, boxShadow: '0 12px 32px rgba(var(--p-rgb), 0.4)' }}
+              whileHover={{ scale: 1.05, boxShadow: '0 12px 32px rgba(var(--p-rgb), 0.4), 0 0 48px rgba(var(--p-rgb), 0.15)' }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >
@@ -195,8 +226,8 @@ const Hero = () => {
             <motion.a
               href="images/Saad_Hassan_FullStack_v2.pdf"
               download="Saad_Mohamed_Hassan_CV"
-              className="btn btn-outline cta-btn"
-              whileHover={{ scale: 1.05, borderColor: '#34d399', color: '#34d399' }}
+              className="btn btn-outline cta-btn cv-btn"
+              whileHover={{ scale: 1.05, borderColor: 'var(--s)', color: 'var(--s)' }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >
@@ -206,9 +237,9 @@ const Hero = () => {
 
           <motion.div
             className="hero-stats"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.4 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.6 }}
           >
             {[
               { num: 1, suffix: '+', label: 'Years learning' },
@@ -218,7 +249,7 @@ const Hero = () => {
               <motion.div
                 key={s.label}
                 className="stat-item"
-                whileHover={{ scale: 1.08 }}
+                whileHover={{ scale: 1.08, y: -2 }}
                 transition={{ type: 'spring', stiffness: 300 }}
               >
                 <div className="stat-num">
@@ -228,27 +259,29 @@ const Hero = () => {
               </motion.div>
             ))}
           </motion.div>
-        </motion.div>
+        </div>
 
         <motion.div
           className="hero-visual"
-          initial={{ opacity: 0, x: 60, scale: 0.95 }}
+          initial={{ opacity: 0, x: 80, scale: 0.92 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
-          transition={{ duration: 0.9, ease: [0.23, 1, 0.32, 1], delay: 0.5 }}
+          transition={{ duration: 1.0, ease: [0.23, 1, 0.32, 1], delay: 0.7 }}
         >
           <motion.div
             ref={codeRef}
-            className="code-window glass hero-float"
+            className="code-window glass"
             onMouseMove={handleMove}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
             animate={{
-              rotateX: hover ? mousePos.y * -10 : 0,
-              rotateY: hover ? mousePos.x * 10 : 0,
+              rotateX: hover ? mousePos.y * -14 : 1,
+              rotateY: hover ? mousePos.x * 14 : 2,
+              rotateZ: hover ? mousePos.x * mousePos.y * 3 : 0.5,
             }}
-            transition={{ type: 'spring', stiffness: 120, damping: 18 }}
-            style={{ perspective: 1000 }}
+            transition={{ type: 'spring', stiffness: 100, damping: 15 }}
+            style={{ perspective: 1200 }}
           >
+            <Scanlines />
             <div className="win-header">
               <span className="win-dot r" /><span className="win-dot y" /><span className="win-dot g" />
               <span className="win-tab">developer.ts</span>
@@ -262,14 +295,15 @@ const Hero = () => {
               {'  '}<span className="key">status</span>: <span className="str">"Open to work"</span>,{'\n'}
               {'}'};
             </pre>
+            <div className="code-window-glow" />
           </motion.div>
 
           <motion.div
             className="status-card glass"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.3 }}
-            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.6, delay: 1.5 }}
+            whileHover={{ scale: 1.02, borderColor: 'var(--bd-s)' }}
           >
             <span className="status-dot" />
             <p className="status-text">
