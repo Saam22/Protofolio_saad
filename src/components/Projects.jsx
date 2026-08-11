@@ -12,6 +12,7 @@ import './Projects.css';
 const typeConfig = {
   Frontend: { cls: 'frontend', color: '#818cf8', glow: 'rgba(129,140,248,0.35)', icon: <FaStar /> },
   Backend: { cls: 'backend', color: '#34d399', glow: 'rgba(52,211,153,0.35)', icon: <FaCode /> },
+  FullStack: { cls: 'fullstack', color: '#f472b6', glow: 'rgba(244,114,182,0.35)', icon: <FaRocket /> },
   'Full Stack': { cls: 'fullstack', color: '#f472b6', glow: 'rgba(244,114,182,0.35)', icon: <FaRocket /> },
 };
 
@@ -298,6 +299,10 @@ const ProjectCard = ({ project, index, onOpenPreview, onOpenDetail }) => {
         '--tilt-y': `${tilt.y}deg`,
       }}
       variants={staggerItemScale}
+      initial="initial"
+      whileInView="whileInView"
+      viewport={{ once: false, amount: 0.1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
       whileHover={{ y: -8, transition: { duration: 0.3 } }}
     >
       {project.featured && <div className="featured-ribbon">Featured</div>}
@@ -530,7 +535,7 @@ const Projects = () => {
           whileInView="whileInView"
           viewport={staggerContainer.viewport}
         >
-          <AnimatePresence mode="wait">
+          <AnimatePresence initial={false}>
             {filtered.length > 0 ? filtered.map((project, i) => (
               <ProjectCard
                 key={project.id}

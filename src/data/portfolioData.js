@@ -46,9 +46,9 @@ export const portfolioData = {
   ],
 
   skills: {
-    programmingLanguages: ["C++", "Java", "Python", "R", "C#", "SQL", "Dart", "JavaScript", "TypeScript"],
+    programmingLanguages: ["C++", "Java", "Python", "R", "C#", "SQL", "Dart", "JavaScript"],
     frontend: {
-      languages: ["HTML5", "CSS3", "JavaScript", "TypeScript"],
+      languages: ["HTML5", "CSS3", "JavaScript"],
       libraries: ["React JS", "Bootstrap", "Tailwind CSS"],
       tools: ["Git & GitHub", "Figma", "Webpack", "Vite"]
     },

@@ -80,7 +80,7 @@ const Skills = () => {
 
   const coreSkills = [
     { name: 'React.js', level: 90 },
-    { name: 'JavaScript / TypeScript', level: 85 },
+    { name: 'JavaScript ', level: 85 },
     { name: 'Node.js / Express', level: 80 },
     { name: 'Python / Django', level: 75 },
     { name: 'ASP.NET / C#', level: 70 },

@@ -5,7 +5,7 @@ import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaGraduationCap, FaBriefcase } fro
 import { fadeIn, fadeInRight, staggerContainer, staggerItem } from '../animations';
 import './About.css';
 
-const tags = ['React JS', 'Node.js', 'Django', 'TypeScript', 'ASP.NET', 'PostgreSQL', 'MongoDB', 'Git'];
+const tags = ['React JS', 'Node.js', 'Django', 'JavaScript', 'ASP.NET', 'PostgreSQL', 'MongoDB', 'Git'];
 
 const About = () => (
   <section id="about" className="about-section">
